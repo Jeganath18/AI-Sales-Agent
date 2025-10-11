@@ -15,10 +15,11 @@ app.use(express.json());
 const PORT = process.env.PORT || 3000;
 
 // Start all micro-agents
-startRecommendationAgent();
-startInventoryAgent();
-startPaymentAgent();
-startFulfillmentAgent();
+// startRecommendationAgent();
+// startInventoryAgent();
+// startPaymentAgent();
+// startFulfillmentAgent();
+// It will start automaticaly while import
 
 // ✅ Telegram Bot (Polling)
 const bot = new TelegramBot(process.env.TELEGRAM_TOKEN, { polling: true });
