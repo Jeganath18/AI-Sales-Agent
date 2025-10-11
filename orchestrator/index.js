@@ -1,5 +1,6 @@
 // orchestrator/index.js
 require('dotenv').config();
+const express = require('express');
 const grpc = require('@grpc/grpc-js');
 const protoLoader = require('@grpc/proto-loader');
 const TelegramBot = require('node-telegram-bot-api');
@@ -21,33 +22,45 @@ const proto = grpc.loadPackageDefinition(pkgDef).agents;
 // 1️⃣ Start gRPC server
 // =======================
 const grpcServer = new grpc.Server();
-
-// Register all agent services
 grpcServer.addService(proto.RecommendationService.service, { Search });
 grpcServer.addService(proto.InventoryService.service, { CheckInventory });
 grpcServer.addService(proto.PaymentService.service, { ProcessPayment });
 grpcServer.addService(proto.FulfillmentService.service, { FulfillOrder });
 
-const GRPC_PORT = 50051; // Internal port for gRPC
+const GRPC_PORT = 50051;
 grpcServer.bindAsync(`0.0.0.0:${GRPC_PORT}`, grpc.ServerCredentials.createInsecure(), () => {
   grpcServer.start();
   console.log(`🧠 All gRPC agents running on port ${GRPC_PORT}`);
 });
 
 // =======================
-// 2️⃣ Start Telegram bot
+// 2️⃣ Start Express & Telegram webhook
 // =======================
-const bot = new TelegramBot(process.env.TELEGRAM_TOKEN, { polling: true });
-console.log('🤖 Telegram bot polling is running...');
+const app = express();
+app.use(express.json());
+
+const bot = new TelegramBot(process.env.TELEGRAM_TOKEN);
+const RENDER_URL = process.env.RENDER_EXTERNAL_URL || 'http://localhost:3000';
+bot.setWebHook(`${RENDER_URL}/telegram-webhook`);
+console.log(`🤖 Telegram bot webhook set at ${RENDER_URL}/telegram-webhook`);
+
+// Webhook endpoint
+app.post('/telegram-webhook', (req, res) => {
+  bot.processUpdate(req.body);
+  res.sendStatus(200);
+});
+
+// Health check
+app.get('/', (_, res) => res.send('🚀 Nexa AI Orchestrator running.'));
 
 const sessions = {};
 
-// Helper: send first products
+// =======================
+// 3️⃣ Helper: product search
+// =======================
 async function handleProductSearch(chatId, productType) {
   const rec = await searchProducts(productType, '', 1, 0, 3);
-  if (!rec.ok || rec.products.length === 0) {
-    return bot.sendMessage(chatId, 'No products available.');
-  }
+  if (!rec.ok || rec.products.length === 0) return bot.sendMessage(chatId, 'No products available.');
 
   for (const p of rec.products) {
     await bot.sendPhoto(chatId, p.imageUrl, {
@@ -57,13 +70,7 @@ async function handleProductSearch(chatId, productType) {
 
   if (rec.moreAvailable) {
     bot.sendMessage(chatId, 'Would you like to see more recommendations? (yes/no)');
-    sessions[chatId] = {
-      stage: 'moreRecommendations',
-      searchQuery: productType,
-      offset: 3,
-      limit: 3,
-      selectedSku: rec.products[0].sku
-    };
+    sessions[chatId] = { stage: 'moreRecommendations', searchQuery: productType, offset: 3, limit: 3, selectedSku: rec.products[0].sku };
   } else {
     bot.sendMessage(chatId, 'Please tell me your shoe size (e.g., size 9).');
     sessions[chatId] = { stage: 'size', selectedSku: rec.products[0].sku };
@@ -71,7 +78,7 @@ async function handleProductSearch(chatId, productType) {
 }
 
 // =======================
-// 3️⃣ Bot message handler
+// 4️⃣ Telegram bot message handler
 // =======================
 bot.on('message', async msg => {
   const chatId = msg.chat.id;
@@ -80,7 +87,6 @@ bot.on('message', async msg => {
   const session = sessions[chatId];
 
   try {
-    // ✅ More recommendations stage
     if (session?.stage === 'moreRecommendations') {
       if (text.toLowerCase() === 'yes') {
         const rec = await searchProducts(session.searchQuery, '', 1, session.offset, session.limit);
@@ -89,7 +95,6 @@ bot.on('message', async msg => {
             caption: `${p.name}\nType: ${p.type}\nPrice: ₹${p.price}\nDelivery: ${p.deliveryDays} days`
           });
         }
-
         if (rec.moreAvailable) {
           session.offset += session.limit;
           bot.sendMessage(chatId, 'Do you want to see more? (yes/no)');
@@ -105,7 +110,6 @@ bot.on('message', async msg => {
       }
     }
 
-    // ✅ Detect product type
     const productTypes = ['shoe', 'formal', 'casual', 'chappal', 'flipflop', 'sports'];
     const productType = productTypes.find(pt => text.toLowerCase().includes(pt));
     if (productType) {
@@ -113,7 +117,6 @@ bot.on('message', async msg => {
       return;
     }
 
-    // ✅ Size stage
     if (session?.stage === 'size') {
       session.size = text;
       bot.sendMessage(chatId, 'Great! Please provide your address and pincode.');
@@ -121,26 +124,18 @@ bot.on('message', async msg => {
       return;
     }
 
-    // ✅ Address stage
     if (session?.stage === 'address') {
       session.address = text;
       const sku = session.selectedSku;
       const inv = await checkInventory(sku, 1, '560001');
-      if (!inv.ok || !inv.totalAvailable)
-        return bot.sendMessage(chatId, 'Sorry, item not available nearby.');
+      if (!inv.ok || !inv.totalAvailable) return bot.sendMessage(chatId, 'Sorry, item not available nearby.');
 
       await bot.sendMessage(chatId, `✅ ${inv.name} is available for delivery.`);
-
       await bot.sendMessage(chatId, 'Opening Google Pay... 💳');
       const pay = await processPayment('order-' + Date.now(), 10000, 'gpay');
       await bot.sendMessage(chatId, `✅ ${pay.confirmation}`);
 
-      await createFulfillment({
-        orderId: 'order-' + Date.now(),
-        items: [{ sku, qty: 1 }],
-        address: session.address,
-        pincode: '560001'
-      });
+      await createFulfillment({ orderId: 'order-' + Date.now(), items: [{ sku, qty: 1 }], address: session.address, pincode: '560001' });
       await bot.sendMessage(chatId, '🎉 Order placed successfully!');
       sessions[chatId] = null;
       return;
@@ -152,4 +147,9 @@ bot.on('message', async msg => {
   }
 });
 
+// =======================
+// 5️⃣ Start Express
+// =======================
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`🌐 HTTP server running on port ${PORT}`));
 console.log('🚀 Nexa AI Orchestrator is fully running.');
