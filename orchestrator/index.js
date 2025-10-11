@@ -41,7 +41,7 @@ app.use(express.json());
 
 const bot = new TelegramBot(process.env.TELEGRAM_TOKEN);
 const RENDER_URL = process.env.RENDER_EXTERNAL_URL || 'http://localhost:3000';
-bot.setWebHook(`${RENDER_URL}/telegram-webhook`);
+bot.setWebHook("https://ai-sales-agent-ln48.onrender.com/telegram-webhook");
 console.log(`🤖 Telegram bot webhook set at ${RENDER_URL}/telegram-webhook`);
 
 // Webhook endpoint
