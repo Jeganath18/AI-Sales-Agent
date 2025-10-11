@@ -1,0 +1,7 @@
+{
+  "items": [
+    { "sku": "SKU-001", "name": "Blue Casual Shoe", "storeQty": 4, "stockroomQty": 10 },
+    { "sku": "SKU-002", "name": "Black Formal Shoe", "storeQty": 2, "stockroomQty": 5 },
+    { "sku": "SKU-003", "name": "Lamborgini Car", "storeQty": 2, "stockroomQty": 5 }
+  ]
+}

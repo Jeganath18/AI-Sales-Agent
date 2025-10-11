@@ -1,0 +1,1804 @@
+{
+  "products": [
+    {
+      "sku": "SKU-001",
+      "name": "Stylish Blue Canvas Casual Shoes",
+      "type": "casual",
+      "price": 1299,
+      "imageUrl": "https://images.pexels.com/photos/1580267/pexels-photo-1580267.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-002",
+      "name": "Classic Black Leather Formal Shoes",
+      "type": "formal",
+      "price": 2499,
+      "imageUrl": "https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-003",
+      "name": "Comfortable Tan Rubber Chappals",
+      "type": "chappal",
+      "price": 499,
+      "imageUrl": "https://images.pexels.com/photos/10186105/pexels-photo-10186105.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-004",
+      "name": "Modern Grey Synthetic Flipflops",
+      "type": "flipflop",
+      "price": 399,
+      "imageUrl": "https://images.pexels.com/photos/4501062/pexels-photo-4501062.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 5,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-005",
+      "name": "Cozy Pink Velvet Slippers",
+      "type": "slipper",
+      "price": 699,
+      "imageUrl": "https://images.pexels.com/photos/10323315/pexels-photo-10323315.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-006",
+      "name": "Running White Mesh Casual Shoes",
+      "type": "casual",
+      "price": 1899,
+      "imageUrl": "https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-007",
+      "name": "Elegant Beige Suede Formal Shoes",
+      "type": "formal",
+      "price": 2199,
+      "imageUrl": "https://images.pexels.com/photos/336372/pexels-photo-336372.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-008",
+      "name": "Daily Wear Brown Leather Chappals",
+      "type": "chappal",
+      "price": 599,
+      "imageUrl": "https://images.pexels.com/photos/9733192/pexels-photo-9733192.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-009",
+      "name": "Beach Ready Blue Rubber Flipflops",
+      "type": "flipflop",
+      "price": 299,
+      "imageUrl": "https://images.pexels.com/photos/267242/pexels-photo-267242.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-010",
+      "name": "Indoor Comfort Grey Cotton Slippers",
+      "type": "slipper",
+      "price": 799,
+      "imageUrl": "https://images.pexels.com/photos/7940821/pexels-photo-7940821.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-011",
+      "name": "Party Wear Red Synthetic Casual Shoes",
+      "type": "casual",
+      "price": 1499,
+      "imageUrl": "https://images.pexels.com/photos/1478442/pexels-photo-1478442.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 5,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-012",
+      "name": "Business Class Tan Leather Formal Shoes",
+      "type": "formal",
+      "price": 2999,
+      "imageUrl": "https://images.pexels.com/photos/267301/pexels-photo-267301.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-013",
+      "name": "Ethnic Black Beaded Chappals",
+      "type": "chappal",
+      "price": 899,
+      "imageUrl": "https://images.pexels.com/photos/10427303/pexels-photo-10427303.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 6,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-014",
+      "name": "Sporty Green Camo Flipflops",
+      "type": "flipflop",
+      "price": 459,
+      "imageUrl": "https://images.pexels.com/photos/15175988/pexels-photo-15175988/free-photo-of-man-in-flip-flops-standing-on-grass.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-015",
+      "name": "Warm Woolen Brown Slippers",
+      "type": "slipper",
+      "price": 999,
+      "imageUrl": "https://images.pexels.com/photos/7693213/pexels-photo-7693213.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-016",
+      "name": "Trendy Black Canvas Casual Shoes",
+      "type": "casual",
+      "price": 1199,
+      "imageUrl": "https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-017",
+      "name": "Corporate Chic Black Formal Shoes",
+      "type": "formal",
+      "price": 2399,
+      "imageUrl": "https://images.pexels.com/photos/1040384/pexels-photo-1040384.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-018",
+      "name": "Simple Blue Rubber Chappals",
+      "type": "chappal",
+      "price": 349,
+      "imageUrl": "https://images.pexels.com/photos/16322307/pexels-photo-16322307/free-photo-of-blue-sandals-in-close-up-shot.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-019",
+      "name": "Glittery Silver Synthetic Flipflops",
+      "type": "flipflop",
+      "price": 599,
+      "imageUrl": "https://images.pexels.com/photos/13010141/pexels-photo-13010141.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 5,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-020",
+      "name": "Plush Blue Terrycloth Slippers",
+      "type": "slipper",
+      "price": 849,
+      "imageUrl": "https://images.pexels.com/photos/11559885/pexels-photo-11559885.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-021",
+      "name": "Walking Green Mesh Casual Shoes",
+      "type": "casual",
+      "price": 1699,
+      "imageUrl": "https://images.pexels.com/photos/1580270/pexels-photo-1580270.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-022",
+      "name": "Classic Brown Suede Formal Shoes",
+      "type": "formal",
+      "price": 2799,
+      "imageUrl": "https://images.pexels.com/photos/4252950/pexels-photo-4252950.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-023",
+      "name": "Handcrafted Leather Tan Chappals",
+      "type": "chappal",
+      "price": 999,
+      "imageUrl": "https://images.pexels.com/photos/10287118/pexels-photo-10287118.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 6,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-024",
+      "name": "Basic Black EVA Flipflops",
+      "type": "flipflop",
+      "price": 249,
+      "imageUrl": "https://images.pexels.com/photos/5623652/pexels-photo-5623652.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-025",
+      "name": "Furry White Indoor Slippers",
+      "type": "slipper",
+      "price": 749,
+      "imageUrl": "https://images.pexels.com/photos/7693175/pexels-photo-7693175.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-026",
+      "name": "Modern Grey Canvas Casual Shoes",
+      "type": "casual",
+      "price": 1399,
+      "imageUrl": "https://images.pexels.com/photos/847371/pexels-photo-847371.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-027",
+      "name": "Wedding Wear Golden Formal Shoes",
+      "type": "formal",
+      "price": 2599,
+      "imageUrl": "https://images.pexels.com/photos/15693766/pexels-photo-15693766/free-photo-of-elegant-wedding-shoes.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 5,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-028",
+      "name": "Rugged Black Synthetic Chappals",
+      "type": "chappal",
+      "price": 649,
+      "imageUrl": "https://images.pexels.com/photos/18285169/pexels-photo-18285169/free-photo-of-a-man-wearing-black-sandals-and-a-pair-of-black-pants.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-029",
+      "name": "Colorful Striped Flipflops",
+      "type": "flipflop",
+      "price": 499,
+      "imageUrl": "https://images.pexels.com/photos/3329183/pexels-photo-3329183.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-030",
+      "name": "Orthopedic Brown Leather Slippers",
+      "type": "slipper",
+      "price": 1099,
+      "imageUrl": "https://images.pexels.com/photos/14539130/pexels-photo-14539130.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-031",
+      "name": "Stylish Pink Canvas Casual Shoes",
+      "type": "casual",
+      "price": 1299,
+      "imageUrl": "https://images.pexels.com/photos/1580272/pexels-photo-1580272.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-032",
+      "name": "Classic Grey Leather Formal Shoes",
+      "type": "formal",
+      "price": 2499,
+      "imageUrl": "https://images.pexels.com/photos/4504586/pexels-photo-4504586.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-033",
+      "name": "Comfortable Blue Rubber Chappals",
+      "type": "chappal",
+      "price": 499,
+      "imageUrl": "https://images.pexels.com/photos/14899292/pexels-photo-14899292.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-034",
+      "name": "Modern Black Synthetic Flipflops",
+      "type": "flipflop",
+      "price": 399,
+      "imageUrl": "https://images.pexels.com/photos/994519/pexels-photo-994519.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 5,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-035",
+      "name": "Cozy Red Velvet Slippers",
+      "type": "slipper",
+      "price": 699,
+      "imageUrl": "https://images.pexels.com/photos/1070360/pexels-photo-1070360.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-036",
+      "name": "Running Grey Mesh Casual Shoes",
+      "type": "casual",
+      "price": 1899,
+      "imageUrl": "https://images.pexels.com/photos/2048548/pexels-photo-2048548.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-037",
+      "name": "Elegant Black Suede Formal Shoes",
+      "type": "formal",
+      "price": 2199,
+      "imageUrl": "https://images.pexels.com/photos/2922140/pexels-photo-2922140.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-038",
+      "name": "Daily Wear Tan Leather Chappals",
+      "type": "chappal",
+      "price": 599,
+      "imageUrl": "https://images.pexels.com/photos/12745136/pexels-photo-12745136.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-039",
+      "name": "Beach Ready Yellow Rubber Flipflops",
+      "type": "flipflop",
+      "price": 299,
+      "imageUrl": "https://images.pexels.com/photos/166126/pexels-photo-166126.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-040",
+      "name": "Indoor Comfort Black Cotton Slippers",
+      "type": "slipper",
+      "price": 799,
+      "imageUrl": "https://images.pexels.com/photos/11132204/pexels-photo-11132204.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-041",
+      "name": "Party Wear Silver Synthetic Casual Shoes",
+      "type": "casual",
+      "price": 1499,
+      "imageUrl": "https://images.pexels.com/photos/18242780/pexels-photo-18242780/free-photo-of-silver-shoes-on-legs.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 5,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-042",
+      "name": "Business Class Brown Leather Formal Shoes",
+      "type": "formal",
+      "price": 2999,
+      "imageUrl": "https://images.pexels.com/photos/4465124/pexels-photo-4465124.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-043",
+      "name": "Ethnic Tan Beaded Chappals",
+      "type": "chappal",
+      "price": 899,
+      "imageUrl": "https://images.pexels.com/photos/9886517/pexels-photo-9886517.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 6,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-044",
+      "name": "Sporty Blue Camo Flipflops",
+      "type": "flipflop",
+      "price": 459,
+      "imageUrl": "https://images.pexels.com/photos/15175986/pexels-photo-15175986/free-photo-of-feet-in-flip-flops.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-045",
+      "name": "Warm Woolen Grey Slippers",
+      "type": "slipper",
+      "price": 999,
+      "imageUrl": "https://images.pexels.com/photos/7693174/pexels-photo-7693174.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-046",
+      "name": "Trendy White Canvas Casual Shoes",
+      "type": "casual",
+      "price": 1199,
+      "imageUrl": "https://images.pexels.com/photos/267202/pexels-photo-267202.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-047",
+      "name": "Corporate Chic Brown Formal Shoes",
+      "type": "formal",
+      "price": 2399,
+      "imageUrl": "https://images.pexels.com/photos/994474/pexels-photo-994474.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-048",
+      "name": "Simple Brown Rubber Chappals",
+      "type": "chappal",
+      "price": 349,
+      "imageUrl": "https://images.pexels.com/photos/9733192/pexels-photo-9733192.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-049",
+      "name": "Glittery Golden Synthetic Flipflops",
+      "type": "flipflop",
+      "price": 599,
+      "imageUrl": "https://images.pexels.com/photos/13010134/pexels-photo-13010134.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 5,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-050",
+      "name": "Plush Green Terrycloth Slippers",
+      "type": "slipper",
+      "price": 849,
+      "imageUrl": "https://images.pexels.com/photos/17395646/pexels-photo-17395646/free-photo-of-green-slippers-on-a-carpet.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-051",
+      "name": "Walking Blue Mesh Casual Shoes",
+      "type": "casual",
+      "price": 1699,
+      "imageUrl": "https://images.pexels.com/photos/275979/pexels-photo-275979.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-052",
+      "name": "Classic Tan Suede Formal Shoes",
+      "type": "formal",
+      "price": 2799,
+      "imageUrl": "https://images.pexels.com/photos/914655/pexels-photo-914655.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-053",
+      "name": "Handcrafted Leather Black Chappals",
+      "type": "chappal",
+      "price": 999,
+      "imageUrl": "https://images.pexels.com/photos/10186104/pexels-photo-10186104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 6,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-054",
+      "name": "Basic Blue EVA Flipflops",
+      "type": "flipflop",
+      "price": 249,
+      "imageUrl": "https://images.pexels.com/photos/994523/pexels-photo-994523.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-055",
+      "name": "Furry Pink Indoor Slippers",
+      "type": "slipper",
+      "price": 749,
+      "imageUrl": "https://images.pexels.com/photos/10323315/pexels-photo-10323315.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-056",
+      "name": "Modern Black Canvas Casual Shoes",
+      "type": "casual",
+      "price": 1399,
+      "imageUrl": "https://images.pexels.com/photos/40662/shoes-footwear-dirty-fashion-40662.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-057",
+      "name": "Wedding Wear Silver Formal Shoes",
+      "type": "formal",
+      "price": 2599,
+      "imageUrl": "https://images.pexels.com/photos/313789/pexels-photo-313789.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 5,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-058",
+      "name": "Rugged Brown Synthetic Chappals",
+      "type": "chappal",
+      "price": 649,
+      "imageUrl": "https://images.pexels.com/photos/12217621/pexels-photo-12217621.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-059",
+      "name": "Colorful Polka Dot Flipflops",
+      "type": "flipflop",
+      "price": 499,
+      "imageUrl": "https://images.pexels.com/photos/10257545/pexels-photo-10257545.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-060",
+      "name": "Orthopedic Black Leather Slippers",
+      "type": "slipper",
+      "price": 1099,
+      "imageUrl": "https://images.pexels.com/photos/14539133/pexels-photo-14539133.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-061",
+      "name": "Stylish White Canvas Casual Shoes",
+      "type": "casual",
+      "price": 1299,
+      "imageUrl": "https://images.pexels.com/photos/1102777/pexels-photo-1102777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-062",
+      "name": "Classic Blue Leather Formal Shoes",
+      "type": "formal",
+      "price": 2499,
+      "imageUrl": "https://images.pexels.com/photos/718981/pexels-photo-718981.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-063",
+      "name": "Comfortable Green Rubber Chappals",
+      "type": "chappal",
+      "price": 499,
+      "imageUrl": "https://images.pexels.com/photos/14899291/pexels-photo-14899291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-064",
+      "name": "Modern White Synthetic Flipflops",
+      "type": "flipflop",
+      "price": 399,
+      "imageUrl": "https://images.pexels.com/photos/4501072/pexels-photo-4501072.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 5,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-065",
+      "name": "Cozy Blue Velvet Slippers",
+      "type": "slipper",
+      "price": 699,
+      "imageUrl": "https://images.pexels.com/photos/11559885/pexels-photo-11559885.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-066",
+      "name": "Running Red Mesh Casual Shoes",
+      "type": "casual",
+      "price": 1899,
+      "imageUrl": "https://images.pexels.com/photos/1464625/pexels-photo-1464625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-067",
+      "name": "Elegant Maroon Suede Formal Shoes",
+      "type": "formal",
+      "price": 2199,
+      "imageUrl": "https://images.pexels.com/photos/17694998/pexels-photo-17694998/free-photo-of-maroon-suede-heels.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-068",
+      "name": "Daily Wear Black Leather Chappals",
+      "type": "chappal",
+      "price": 599,
+      "imageUrl": "https://images.pexels.com/photos/18285169/pexels-photo-18285169/free-photo-of-a-man-wearing-black-sandals-and-a-pair-of-black-pants.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-069",
+      "name": "Beach Ready Orange Rubber Flipflops",
+      "type": "flipflop",
+      "price": 299,
+      "imageUrl": "https://images.pexels.com/photos/10940656/pexels-photo-10940656.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-070",
+      "name": "Indoor Comfort Brown Cotton Slippers",
+      "type": "slipper",
+      "price": 799,
+      "imageUrl": "https://images.pexels.com/photos/14539130/pexels-photo-14539130.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-071",
+      "name": "Party Wear Golden Synthetic Casual Shoes",
+      "type": "casual",
+      "price": 1499,
+      "imageUrl": "https://images.pexels.com/photos/1449874/pexels-photo-1449874.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 5,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-072",
+      "name": "Business Class Black Leather Formal Shoes",
+      "type": "formal",
+      "price": 2999,
+      "imageUrl": "https://images.pexels.com/photos/4153/fashion-leather-shoes-men.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-073",
+      "name": "Ethnic Silver Beaded Chappals",
+      "type": "chappal",
+      "price": 899,
+      "imageUrl": "https://images.pexels.com/photos/10427302/pexels-photo-10427302.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 6,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-074",
+      "name": "Sporty Red Camo Flipflops",
+      "type": "flipflop",
+      "price": 459,
+      "imageUrl": "https://images.pexels.com/photos/15175987/pexels-photo-15175987/free-photo-of-man-in-flip-flops.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-075",
+      "name": "Warm Woolen Black Slippers",
+      "type": "slipper",
+      "price": 999,
+      "imageUrl": "https://images.pexels.com/photos/10100780/pexels-photo-10100780.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-076",
+      "name": "Trendy Blue Canvas Casual Shoes",
+      "type": "casual",
+      "price": 1199,
+      "imageUrl": "https://images.pexels.com/photos/2421374/pexels-photo-2421374.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-077",
+      "name": "Corporate Chic Tan Formal Shoes",
+      "type": "formal",
+      "price": 2399,
+      "imageUrl": "https://images.pexels.com/photos/336372/pexels-photo-336372.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-078",
+      "name": "Simple Grey Rubber Chappals",
+      "type": "chappal",
+      "price": 349,
+      "imageUrl": "https://images.pexels.com/photos/17395644/pexels-photo-17395644/free-photo-of-light-gray-slippers-on-the-floor.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-079",
+      "name": "Glittery Pink Synthetic Flipflops",
+      "type": "flipflop",
+      "price": 599,
+      "imageUrl": "https://images.pexels.com/photos/13010137/pexels-photo-13010137.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 5,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-080",
+      "name": "Plush Tan Terrycloth Slippers",
+      "type": "slipper",
+      "price": 849,
+      "imageUrl": "https://images.pexels.com/photos/7693213/pexels-photo-7693213.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-081",
+      "name": "Walking Red Mesh Casual Shoes",
+      "type": "casual",
+      "price": 1699,
+      "imageUrl": "https://images.pexels.com/photos/2385477/pexels-photo-2385477.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-082",
+      "name": "Classic Black Suede Formal Shoes",
+      "type": "formal",
+      "price": 2799,
+      "imageUrl": "https://images.pexels.com/photos/4504588/pexels-photo-4504588.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-083",
+      "name": "Handcrafted Leather Brown Chappals",
+      "type": "chappal",
+      "price": 999,
+      "imageUrl": "https://images.pexels.com/photos/10287119/pexels-photo-10287119.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 6,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-084",
+      "name": "Basic Green EVA Flipflops",
+      "type": "flipflop",
+      "price": 249,
+      "imageUrl": "https://images.pexels.com/photos/5623672/pexels-photo-5623672.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-085",
+      "name": "Furry Grey Indoor Slippers",
+      "type": "slipper",
+      "price": 749,
+      "imageUrl": "https://images.pexels.com/photos/7940821/pexels-photo-7940821.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-086",
+      "name": "Modern White Canvas Casual Shoes",
+      "type": "casual",
+      "price": 1399,
+      "imageUrl": "https://images.pexels.com/photos/1598507/pexels-photo-1598507.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-087",
+      "name": "Wedding Wear Red Formal Shoes",
+      "type": "formal",
+      "price": 2599,
+      "imageUrl": "https://images.pexels.com/photos/322207/pexels-photo-322207.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 5,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-088",
+      "name": "Rugged Blue Synthetic Chappals",
+      "type": "chappal",
+      "price": 649,
+      "imageUrl": "https://images.pexels.com/photos/16322307/pexels-photo-16322307/free-photo-of-blue-sandals-in-close-up-shot.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-089",
+      "name": "Colorful Floral Flipflops",
+      "type": "flipflop",
+      "price": 499,
+      "imageUrl": "https://images.pexels.com/photos/4501066/pexels-photo-4501066.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-090",
+      "name": "Orthopedic Tan Leather Slippers",
+      "type": "slipper",
+      "price": 1099,
+      "imageUrl": "https://images.pexels.com/photos/12745136/pexels-photo-12745136.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-091",
+      "name": "Stylish Grey Canvas Casual Shoes",
+      "type": "casual",
+      "price": 1299,
+      "imageUrl": "https://images.pexels.com/photos/1580271/pexels-photo-1580271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-092",
+      "name": "Classic Tan Leather Formal Shoes",
+      "type": "formal",
+      "price": 2499,
+      "imageUrl": "https://images.pexels.com/photos/267301/pexels-photo-267301.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-093",
+      "name": "Comfortable Black Rubber Chappals",
+      "type": "chappal",
+      "price": 499,
+      "imageUrl": "https://images.pexels.com/photos/10186104/pexels-photo-10186104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-094",
+      "name": "Modern Red Synthetic Flipflops",
+      "type": "flipflop",
+      "price": 399,
+      "imageUrl": "https://images.pexels.com/photos/5623659/pexels-photo-5623659.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 5,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-095",
+      "name": "Cozy Brown Velvet Slippers",
+      "type": "slipper",
+      "price": 699,
+      "imageUrl": "https://images.pexels.com/photos/1070356/pexels-photo-1070356.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-096",
+      "name": "Running Black Mesh Casual Shoes",
+      "type": "casual",
+      "price": 1899,
+      "imageUrl": "https://images.pexels.com/photos/2529147/pexels-photo-2529147.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-097",
+      "name": "Elegant White Suede Formal Shoes",
+      "type": "formal",
+      "price": 2199,
+      "imageUrl": "https://images.pexels.com/photos/1445696/pexels-photo-1445696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-098",
+      "name": "Daily Wear Blue Leather Chappals",
+      "type": "chappal",
+      "price": 599,
+      "imageUrl": "https://images.pexels.com/photos/12217622/pexels-photo-12217622.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-099",
+      "name": "Beach Ready Green Rubber Flipflops",
+      "type": "flipflop",
+      "price": 299,
+      "imageUrl": "https://images.pexels.com/photos/4501073/pexels-photo-4501073.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-100",
+      "name": "Indoor Comfort Red Cotton Slippers",
+      "type": "slipper",
+      "price": 799,
+      "imageUrl": "https://images.pexels.com/photos/17395645/pexels-photo-17395645/free-photo-of-red-slippers-on-a-carpet.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-101",
+      "name": "Stylish Blue Canvas Casual Shoes",
+      "type": "casual",
+      "price": 1299,
+      "imageUrl": "https://images.pexels.com/photos/1580267/pexels-photo-1580267.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-102",
+      "name": "Classic Black Leather Formal Shoes",
+      "type": "formal",
+      "price": 2499,
+      "imageUrl": "https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-103",
+      "name": "Comfortable Tan Rubber Chappals",
+      "type": "chappal",
+      "price": 499,
+      "imageUrl": "https://images.pexels.com/photos/10186105/pexels-photo-10186105.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-104",
+      "name": "Modern Grey Synthetic Flipflops",
+      "type": "flipflop",
+      "price": 399,
+      "imageUrl": "https://images.pexels.com/photos/4501062/pexels-photo-4501062.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 5,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-105",
+      "name": "Cozy Pink Velvet Slippers",
+      "type": "slipper",
+      "price": 699,
+      "imageUrl": "https://images.pexels.com/photos/10323315/pexels-photo-10323315.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-106",
+      "name": "Running White Mesh Casual Shoes",
+      "type": "casual",
+      "price": 1899,
+      "imageUrl": "https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-107",
+      "name": "Elegant Beige Suede Formal Shoes",
+      "type": "formal",
+      "price": 2199,
+      "imageUrl": "https://images.pexels.com/photos/336372/pexels-photo-336372.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-108",
+      "name": "Daily Wear Brown Leather Chappals",
+      "type": "chappal",
+      "price": 599,
+      "imageUrl": "https://images.pexels.com/photos/9733192/pexels-photo-9733192.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-109",
+      "name": "Beach Ready Blue Rubber Flipflops",
+      "type": "flipflop",
+      "price": 299,
+      "imageUrl": "https://images.pexels.com/photos/267242/pexels-photo-267242.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-110",
+      "name": "Indoor Comfort Grey Cotton Slippers",
+      "type": "slipper",
+      "price": 799,
+      "imageUrl": "https://images.pexels.com/photos/7940821/pexels-photo-7940821.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-111",
+      "name": "Party Wear Red Synthetic Casual Shoes",
+      "type": "casual",
+      "price": 1499,
+      "imageUrl": "https://images.pexels.com/photos/1478442/pexels-photo-1478442.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 5,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-112",
+      "name": "Business Class Tan Leather Formal Shoes",
+      "type": "formal",
+      "price": 2999,
+      "imageUrl": "https://images.pexels.com/photos/267301/pexels-photo-267301.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-113",
+      "name": "Ethnic Black Beaded Chappals",
+      "type": "chappal",
+      "price": 899,
+      "imageUrl": "https://images.pexels.com/photos/10427303/pexels-photo-10427303.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 6,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-114",
+      "name": "Sporty Green Camo Flipflops",
+      "type": "flipflop",
+      "price": 459,
+      "imageUrl": "https://images.pexels.com/photos/15175988/pexels-photo-15175988/free-photo-of-man-in-flip-flops-standing-on-grass.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-115",
+      "name": "Warm Woolen Brown Slippers",
+      "type": "slipper",
+      "price": 999,
+      "imageUrl": "https://images.pexels.com/photos/7693213/pexels-photo-7693213.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-116",
+      "name": "Trendy Black Canvas Casual Shoes",
+      "type": "casual",
+      "price": 1199,
+      "imageUrl": "https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-117",
+      "name": "Corporate Chic Black Formal Shoes",
+      "type": "formal",
+      "price": 2399,
+      "imageUrl": "https://images.pexels.com/photos/1040384/pexels-photo-1040384.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-118",
+      "name": "Simple Blue Rubber Chappals",
+      "type": "chappal",
+      "price": 349,
+      "imageUrl": "https://images.pexels.com/photos/16322307/pexels-photo-16322307/free-photo-of-blue-sandals-in-close-up-shot.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-119",
+      "name": "Glittery Silver Synthetic Flipflops",
+      "type": "flipflop",
+      "price": 599,
+      "imageUrl": "https://images.pexels.com/photos/13010141/pexels-photo-13010141.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 5,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-120",
+      "name": "Plush Blue Terrycloth Slippers",
+      "type": "slipper",
+      "price": 849,
+      "imageUrl": "https://images.pexels.com/photos/11559885/pexels-photo-11559885.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-121",
+      "name": "Walking Green Mesh Casual Shoes",
+      "type": "casual",
+      "price": 1699,
+      "imageUrl": "https://images.pexels.com/photos/1580270/pexels-photo-1580270.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-122",
+      "name": "Classic Brown Suede Formal Shoes",
+      "type": "formal",
+      "price": 2799,
+      "imageUrl": "https://images.pexels.com/photos/4252950/pexels-photo-4252950.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-123",
+      "name": "Handcrafted Leather Tan Chappals",
+      "type": "chappal",
+      "price": 999,
+      "imageUrl": "https://images.pexels.com/photos/10287118/pexels-photo-10287118.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 6,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-124",
+      "name": "Basic Black EVA Flipflops",
+      "type": "flipflop",
+      "price": 249,
+      "imageUrl": "https://images.pexels.com/photos/5623652/pexels-photo-5623652.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-125",
+      "name": "Furry White Indoor Slippers",
+      "type": "slipper",
+      "price": 749,
+      "imageUrl": "https://images.pexels.com/photos/7693175/pexels-photo-7693175.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-126",
+      "name": "Modern Grey Canvas Casual Shoes",
+      "type": "casual",
+      "price": 1399,
+      "imageUrl": "https://images.pexels.com/photos/847371/pexels-photo-847371.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-127",
+      "name": "Wedding Wear Golden Formal Shoes",
+      "type": "formal",
+      "price": 2599,
+      "imageUrl": "https://images.pexels.com/photos/15693766/pexels-photo-15693766/free-photo-of-elegant-wedding-shoes.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 5,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-128",
+      "name": "Rugged Black Synthetic Chappals",
+      "type": "chappal",
+      "price": 649,
+      "imageUrl": "https://images.pexels.com/photos/18285169/pexels-photo-18285169/free-photo-of-a-man-wearing-black-sandals-and-a-pair-of-black-pants.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-129",
+      "name": "Colorful Striped Flipflops",
+      "type": "flipflop",
+      "price": 499,
+      "imageUrl": "https://images.pexels.com/photos/3329183/pexels-photo-3329183.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-130",
+      "name": "Orthopedic Brown Leather Slippers",
+      "type": "slipper",
+      "price": 1099,
+      "imageUrl": "https://images.pexels.com/photos/14539130/pexels-photo-14539130.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-131",
+      "name": "Stylish Pink Canvas Casual Shoes",
+      "type": "casual",
+      "price": 1299,
+      "imageUrl": "https://images.pexels.com/photos/1580272/pexels-photo-1580272.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-132",
+      "name": "Classic Grey Leather Formal Shoes",
+      "type": "formal",
+      "price": 2499,
+      "imageUrl": "https://images.pexels.com/photos/4504586/pexels-photo-4504586.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-133",
+      "name": "Comfortable Blue Rubber Chappals",
+      "type": "chappal",
+      "price": 499,
+      "imageUrl": "https://images.pexels.com/photos/14899292/pexels-photo-14899292.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-134",
+      "name": "Modern Black Synthetic Flipflops",
+      "type": "flipflop",
+      "price": 399,
+      "imageUrl": "https://images.pexels.com/photos/994519/pexels-photo-994519.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 5,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-135",
+      "name": "Cozy Red Velvet Slippers",
+      "type": "slipper",
+      "price": 699,
+      "imageUrl": "https://images.pexels.com/photos/1070360/pexels-photo-1070360.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-136",
+      "name": "Running Grey Mesh Casual Shoes",
+      "type": "casual",
+      "price": 1899,
+      "imageUrl": "https://images.pexels.com/photos/2048548/pexels-photo-2048548.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-137",
+      "name": "Elegant Black Suede Formal Shoes",
+      "type": "formal",
+      "price": 2199,
+      "imageUrl": "https://images.pexels.com/photos/2922140/pexels-photo-2922140.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-138",
+      "name": "Daily Wear Tan Leather Chappals",
+      "type": "chappal",
+      "price": 599,
+      "imageUrl": "https://images.pexels.com/photos/12745136/pexels-photo-12745136.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-139",
+      "name": "Beach Ready Yellow Rubber Flipflops",
+      "type": "flipflop",
+      "price": 299,
+      "imageUrl": "https://images.pexels.com/photos/166126/pexels-photo-166126.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-140",
+      "name": "Indoor Comfort Black Cotton Slippers",
+      "type": "slipper",
+      "price": 799,
+      "imageUrl": "https://images.pexels.com/photos/11132204/pexels-photo-11132204.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-141",
+      "name": "Party Wear Silver Synthetic Casual Shoes",
+      "type": "casual",
+      "price": 1499,
+      "imageUrl": "https://images.pexels.com/photos/18242780/pexels-photo-18242780/free-photo-of-silver-shoes-on-legs.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 5,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-142",
+      "name": "Business Class Brown Leather Formal Shoes",
+      "type": "formal",
+      "price": 2999,
+      "imageUrl": "https://images.pexels.com/photos/4465124/pexels-photo-4465124.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-143",
+      "name": "Ethnic Tan Beaded Chappals",
+      "type": "chappal",
+      "price": 899,
+      "imageUrl": "https://images.pexels.com/photos/9886517/pexels-photo-9886517.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 6,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-144",
+      "name": "Sporty Blue Camo Flipflops",
+      "type": "flipflop",
+      "price": 459,
+      "imageUrl": "https://images.pexels.com/photos/15175986/pexels-photo-15175986/free-photo-of-feet-in-flip-flops.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-145",
+      "name": "Warm Woolen Grey Slippers",
+      "type": "slipper",
+      "price": 999,
+      "imageUrl": "https://images.pexels.com/photos/7693174/pexels-photo-7693174.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-146",
+      "name": "Trendy White Canvas Casual Shoes",
+      "type": "casual",
+      "price": 1199,
+      "imageUrl": "https://images.pexels.com/photos/267202/pexels-photo-267202.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-147",
+      "name": "Corporate Chic Brown Formal Shoes",
+      "type": "formal",
+      "price": 2399,
+      "imageUrl": "https://images.pexels.com/photos/994474/pexels-photo-994474.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-148",
+      "name": "Simple Brown Rubber Chappals",
+      "type": "chappal",
+      "price": 349,
+      "imageUrl": "https://images.pexels.com/photos/9733192/pexels-photo-9733192.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-149",
+      "name": "Glittery Golden Synthetic Flipflops",
+      "type": "flipflop",
+      "price": 599,
+      "imageUrl": "https://images.pexels.com/photos/13010134/pexels-photo-13010134.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 5,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-150",
+      "name": "Plush Green Terrycloth Slippers",
+      "type": "slipper",
+      "price": 849,
+      "imageUrl": "https://images.pexels.com/photos/17395646/pexels-photo-17395646/free-photo-of-green-slippers-on-a-carpet.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-151",
+      "name": "Walking Blue Mesh Casual Shoes",
+      "type": "casual",
+      "price": 1699,
+      "imageUrl": "https://images.pexels.com/photos/275979/pexels-photo-275979.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-152",
+      "name": "Classic Tan Suede Formal Shoes",
+      "type": "formal",
+      "price": 2799,
+      "imageUrl": "https://images.pexels.com/photos/914655/pexels-photo-914655.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-153",
+      "name": "Handcrafted Leather Black Chappals",
+      "type": "chappal",
+      "price": 999,
+      "imageUrl": "https://images.pexels.com/photos/10186104/pexels-photo-10186104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 6,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-154",
+      "name": "Basic Blue EVA Flipflops",
+      "type": "flipflop",
+      "price": 249,
+      "imageUrl": "https://images.pexels.com/photos/994523/pexels-photo-994523.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-155",
+      "name": "Furry Pink Indoor Slippers",
+      "type": "slipper",
+      "price": 749,
+      "imageUrl": "https://images.pexels.com/photos/10323315/pexels-photo-10323315.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-156",
+      "name": "Modern Black Canvas Casual Shoes",
+      "type": "casual",
+      "price": 1399,
+      "imageUrl": "https://images.pexels.com/photos/40662/shoes-footwear-dirty-fashion-40662.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-157",
+      "name": "Wedding Wear Silver Formal Shoes",
+      "type": "formal",
+      "price": 2599,
+      "imageUrl": "https://images.pexels.com/photos/313789/pexels-photo-313789.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 5,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-158",
+      "name": "Rugged Brown Synthetic Chappals",
+      "type": "chappal",
+      "price": 649,
+      "imageUrl": "https://images.pexels.com/photos/12217621/pexels-photo-12217621.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-159",
+      "name": "Colorful Polka Dot Flipflops",
+      "type": "flipflop",
+      "price": 499,
+      "imageUrl": "https://images.pexels.com/photos/10257545/pexels-photo-10257545.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-160",
+      "name": "Orthopedic Black Leather Slippers",
+      "type": "slipper",
+      "price": 1099,
+      "imageUrl": "https://images.pexels.com/photos/14539133/pexels-photo-14539133.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-161",
+      "name": "Stylish White Canvas Casual Shoes",
+      "type": "casual",
+      "price": 1299,
+      "imageUrl": "https://images.pexels.com/photos/1102777/pexels-photo-1102777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-162",
+      "name": "Classic Blue Leather Formal Shoes",
+      "type": "formal",
+      "price": 2499,
+      "imageUrl": "https://images.pexels.com/photos/718981/pexels-photo-718981.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-163",
+      "name": "Comfortable Green Rubber Chappals",
+      "type": "chappal",
+      "price": 499,
+      "imageUrl": "https://images.pexels.com/photos/14899291/pexels-photo-14899291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-164",
+      "name": "Modern White Synthetic Flipflops",
+      "type": "flipflop",
+      "price": 399,
+      "imageUrl": "https://images.pexels.com/photos/4501072/pexels-photo-4501072.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 5,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-165",
+      "name": "Cozy Blue Velvet Slippers",
+      "type": "slipper",
+      "price": 699,
+      "imageUrl": "https://images.pexels.com/photos/11559885/pexels-photo-11559885.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-166",
+      "name": "Running Red Mesh Casual Shoes",
+      "type": "casual",
+      "price": 1899,
+      "imageUrl": "https://images.pexels.com/photos/1464625/pexels-photo-1464625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-167",
+      "name": "Elegant Maroon Suede Formal Shoes",
+      "type": "formal",
+      "price": 2199,
+      "imageUrl": "https://images.pexels.com/photos/17694998/pexels-photo-17694998/free-photo-of-maroon-suede-heels.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-168",
+      "name": "Daily Wear Black Leather Chappals",
+      "type": "chappal",
+      "price": 599,
+      "imageUrl": "https://images.pexels.com/photos/18285169/pexels-photo-18285169/free-photo-of-a-man-wearing-black-sandals-and-a-pair-of-black-pants.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-169",
+      "name": "Beach Ready Orange Rubber Flipflops",
+      "type": "flipflop",
+      "price": 299,
+      "imageUrl": "https://images.pexels.com/photos/10940656/pexels-photo-10940656.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-170",
+      "name": "Indoor Comfort Brown Cotton Slippers",
+      "type": "slipper",
+      "price": 799,
+      "imageUrl": "https://images.pexels.com/photos/14539130/pexels-photo-14539130.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-171",
+      "name": "Party Wear Golden Synthetic Casual Shoes",
+      "type": "casual",
+      "price": 1499,
+      "imageUrl": "https://images.pexels.com/photos/1449874/pexels-photo-1449874.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 5,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-172",
+      "name": "Business Class Black Leather Formal Shoes",
+      "type": "formal",
+      "price": 2999,
+      "imageUrl": "https://images.pexels.com/photos/4153/fashion-leather-shoes-men.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-173",
+      "name": "Ethnic Silver Beaded Chappals",
+      "type": "chappal",
+      "price": 899,
+      "imageUrl": "https://images.pexels.com/photos/10427302/pexels-photo-10427302.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 6,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-174",
+      "name": "Sporty Red Camo Flipflops",
+      "type": "flipflop",
+      "price": 459,
+      "imageUrl": "https://images.pexels.com/photos/15175987/pexels-photo-15175987/free-photo-of-man-in-flip-flops.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-175",
+      "name": "Warm Woolen Black Slippers",
+      "type": "slipper",
+      "price": 999,
+      "imageUrl": "https://images.pexels.com/photos/10100780/pexels-photo-10100780.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-176",
+      "name": "Trendy Blue Canvas Casual Shoes",
+      "type": "casual",
+      "price": 1199,
+      "imageUrl": "https://images.pexels.com/photos/2421374/pexels-photo-2421374.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-177",
+      "name": "Corporate Chic Tan Formal Shoes",
+      "type": "formal",
+      "price": 2399,
+      "imageUrl": "https://images.pexels.com/photos/336372/pexels-photo-336372.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-178",
+      "name": "Simple Grey Rubber Chappals",
+      "type": "chappal",
+      "price": 349,
+      "imageUrl": "https://images.pexels.com/photos/17395644/pexels-photo-17395644/free-photo-of-light-gray-slippers-on-the-floor.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-179",
+      "name": "Glittery Pink Synthetic Flipflops",
+      "type": "flipflop",
+      "price": 599,
+      "imageUrl": "https://images.pexels.com/photos/13010137/pexels-photo-13010137.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 5,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-180",
+      "name": "Plush Tan Terrycloth Slippers",
+      "type": "slipper",
+      "price": 849,
+      "imageUrl": "https://images.pexels.com/photos/7693213/pexels-photo-7693213.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-181",
+      "name": "Walking Red Mesh Casual Shoes",
+      "type": "casual",
+      "price": 1699,
+      "imageUrl": "https://images.pexels.com/photos/2385477/pexels-photo-2385477.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-182",
+      "name": "Classic Black Suede Formal Shoes",
+      "type": "formal",
+      "price": 2799,
+      "imageUrl": "https://images.pexels.com/photos/4504588/pexels-photo-4504588.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-183",
+      "name": "Handcrafted Leather Brown Chappals",
+      "type": "chappal",
+      "price": 999,
+      "imageUrl": "https://images.pexels.com/photos/10287119/pexels-photo-10287119.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 6,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-184",
+      "name": "Basic Green EVA Flipflops",
+      "type": "flipflop",
+      "price": 249,
+      "imageUrl": "https://images.pexels.com/photos/5623672/pexels-photo-5623672.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-185",
+      "name": "Furry Grey Indoor Slippers",
+      "type": "slipper",
+      "price": 749,
+      "imageUrl": "https://images.pexels.com/photos/7940821/pexels-photo-7940821.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-186",
+      "name": "Modern White Canvas Casual Shoes",
+      "type": "casual",
+      "price": 1399,
+      "imageUrl": "https://images.pexels.com/photos/1598507/pexels-photo-1598507.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-187",
+      "name": "Wedding Wear Red Formal Shoes",
+      "type": "formal",
+      "price": 2599,
+      "imageUrl": "https://images.pexels.com/photos/322207/pexels-photo-322207.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 5,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-188",
+      "name": "Rugged Blue Synthetic Chappals",
+      "type": "chappal",
+      "price": 649,
+      "imageUrl": "https://images.pexels.com/photos/16322307/pexels-photo-16322307/free-photo-of-blue-sandals-in-close-up-shot.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-189",
+      "name": "Colorful Floral Flipflops",
+      "type": "flipflop",
+      "price": 499,
+      "imageUrl": "https://images.pexels.com/photos/4501066/pexels-photo-4501066.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-190",
+      "name": "Orthopedic Tan Leather Slippers",
+      "type": "slipper",
+      "price": 1099,
+      "imageUrl": "https://images.pexels.com/photos/12745136/pexels-photo-12745136.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-191",
+      "name": "Stylish Grey Canvas Casual Shoes",
+      "type": "casual",
+      "price": 1299,
+      "imageUrl": "https://images.pexels.com/photos/1580271/pexels-photo-1580271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-192",
+      "name": "Classic Tan Leather Formal Shoes",
+      "type": "formal",
+      "price": 2499,
+      "imageUrl": "https://images.pexels.com/photos/267301/pexels-photo-267301.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-193",
+      "name": "Comfortable Black Rubber Chappals",
+      "type": "chappal",
+      "price": 499,
+      "imageUrl": "https://images.pexels.com/photos/10186104/pexels-photo-10186104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-194",
+      "name": "Modern Red Synthetic Flipflops",
+      "type": "flipflop",
+      "price": 399,
+      "imageUrl": "https://images.pexels.com/photos/5623659/pexels-photo-5623659.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 5,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-195",
+      "name": "Cozy Brown Velvet Slippers",
+      "type": "slipper",
+      "price": 699,
+      "imageUrl": "https://images.pexels.com/photos/1070356/pexels-photo-1070356.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-196",
+      "name": "Running Black Mesh Casual Shoes",
+      "type": "casual",
+      "price": 1899,
+      "imageUrl": "https://images.pexels.com/photos/2529147/pexels-photo-2529147.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-197",
+      "name": "Elegant White Suede Formal Shoes",
+      "type": "formal",
+      "price": 2199,
+      "imageUrl": "https://images.pexels.com/photos/1445696/pexels-photo-1445696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-198",
+      "name": "Daily Wear Blue Leather Chappals",
+      "type": "chappal",
+      "price": 599,
+      "imageUrl": "https://images.pexels.com/photos/12217622/pexels-photo-12217622.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 3,
+      "gender": "Male"
+    },
+    {
+      "sku": "SKU-199",
+      "name": "Beach Ready Green Rubber Flipflops",
+      "type": "flipflop",
+      "price": 299,
+      "imageUrl": "https://images.pexels.com/photos/4501073/pexels-photo-4501073.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 2,
+      "gender": "Female"
+    },
+    {
+      "sku": "SKU-200",
+      "name": "Indoor Comfort Red Cotton Slippers",
+      "type": "slipper",
+      "price": 799,
+      "imageUrl": "https://images.pexels.com/photos/17395645/pexels-photo-17395645/free-photo-of-red-slippers-on-a-carpet.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "deliveryDays": 4,
+      "gender": "Male"
+    }
+  ]
+}

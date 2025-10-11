@@ -1,0 +1,26 @@
+[
+  {
+    "orderId": "order-1760193337958",
+    "items": [
+      {
+        "sku": "SKU-001",
+        "qty": 1
+      }
+    ],
+    "address": "Foshan amaze 3A chennai 600106",
+    "pincode": "560001",
+    "createdAt": "2025-10-11T14:35:37.973Z"
+  },
+  {
+    "orderId": "order-1760196741144",
+    "items": [
+      {
+        "sku": "SKU-003",
+        "qty": 1
+      }
+    ],
+    "address": "Foshan amaze 3a 600106",
+    "pincode": "560001",
+    "createdAt": "2025-10-11T15:32:21.158Z"
+  }
+]

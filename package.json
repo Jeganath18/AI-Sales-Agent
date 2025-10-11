@@ -1,0 +1,23 @@
+{
+  "name": "sales-ai-agent",
+  "version": "1.0.0",
+  "main": "orchestrator/index.js",
+  "scripts": {
+    "start:orchestrator": "node orchestrator/index.js",
+    "start:inventory": "node agents/inventoryAgent.js",
+    "start:recommendation": "node agents/recommendationAgent.js",
+    "start:payment": "node agents/paymentAgent.js",
+    "start:fulfillment": "node agents/fulfillmentAgent.js",
+    "start:all": "concurrently -k -n orchestrator,inventory,recommendation,payment,fulfillment -c green,cyan,yellow,magenta,blue \"npm run start:orchestrator\" \"npm run start:inventory\" \"npm run start:recommendation\" \"npm run start:payment\" \"npm run start:fulfillment\""
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.5.0",
+    "@grpc/grpc-js": "^1.8.18",
+    "@grpc/proto-loader": "^0.7.6",
+    "dotenv": "^16.4.5",
+    "node-telegram-bot-api": "^0.66.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

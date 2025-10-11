@@ -1,0 +1,90 @@
+syntax = "proto3";
+
+package agents;
+
+// Inventory
+service InventoryService {
+  rpc CheckInventory(CheckInventoryRequest) returns (CheckInventoryResponse);
+}
+
+// Recommendation
+service RecommendationService {
+  rpc Search(SearchRequest) returns (SearchResponse);
+}
+
+// Payment
+service PaymentService {
+  rpc ProcessPayment(ProcessPaymentRequest) returns (ProcessPaymentResponse);
+}
+
+// Fulfillment
+service FulfillmentService {
+  rpc CreateFulfillment(CreateFulfillmentRequest) returns (CreateFulfillmentResponse);
+}
+
+// ===== Messages =====
+
+message CheckInventoryRequest {
+  string sku = 1;
+  int32 qty = 2;
+  string pincode = 3;
+}
+
+message CheckInventoryResponse {
+  bool ok = 1;
+  string name = 2;
+  string sku = 3;
+  int32 storeQty = 4;
+  int32 stockroomQty = 5;
+  bool totalAvailable = 6;
+  string message = 7;
+}
+
+message SearchRequest {
+  string q = 1;
+  string type = 2;
+  int32 qty = 3;
+}
+
+message Product {
+  string sku = 1;
+  string name = 2;
+  string type = 3;
+  int32 price = 4;
+  string imageUrl = 5;
+  int32 deliveryDays = 6;
+}
+
+message SearchResponse {
+  bool ok = 1;
+  repeated Product products = 2;
+  string message = 3;
+}
+
+message ProcessPaymentRequest {
+  string orderId = 1;
+  int64 amount = 2;
+  string method = 3;
+}
+
+message ProcessPaymentResponse {
+  bool ok = 1;
+  string confirmation = 2;
+}
+
+message OrderItem {
+  string sku = 1;
+  int32 qty = 2;
+}
+
+message CreateFulfillmentRequest {
+  string orderId = 1;
+  repeated OrderItem items = 2;
+  string address = 3;
+  string pincode = 4;
+}
+
+message CreateFulfillmentResponse {
+  bool ok = 1;
+  string message = 2;
+}
