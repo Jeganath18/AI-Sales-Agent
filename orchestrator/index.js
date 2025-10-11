@@ -1,18 +1,23 @@
-import TelegramBot from 'node-telegram-bot-api';
-import express from 'express';
-import { checkInventory, searchProducts, processPayment, createFulfillment } from '../../grpc_clients';
+require('dotenv').config();
+const express = require('express');
+const TelegramBot = require('node-telegram-bot-api');
+const { checkInventory, searchProducts, processPayment, createFulfillment } = require('./orchestrator/grpc_clients');
+const { startRecommendationAgent } = require('./agents/recommendationAgent');
+const { startInventoryAgent } = require('./agents/inventoryAgent');
+const { startPaymentAgent } = require('./agents/paymentAgent');
+const { startFulfillmentAgent } = require('./agents/fulfillmentAgent');
 
 const app = express();
-app.use(express.json()); // Parse JSON body
+app.use(express.json());
 
-const bot = new TelegramBot(process.env.TELEGRAM_TOKEN, { webHook: true });
+const PORT = process.env.PORT || 3000;
 
-// Replace <YOUR_VERCEL_URL> with process.env.VERCEL_URL or your deployed URL
-bot.setWebHook(`${process.env.VERCEL_URL}/api/telegram`);
+// ✅ Start bot in polling mode
+const bot = new TelegramBot(process.env.TELEGRAM_TOKEN, { polling: true });
+console.log("🤖 Telegram bot running in polling mode...");
 
 const sessions = {};
 
-// Helper function for sending first 3 products
 async function handleProductSearch(chatId, productType) {
   const rec = await searchProducts(productType, '', 1, 0, 3);
   if (!rec.ok || rec.products.length === 0) {
@@ -40,16 +45,13 @@ async function handleProductSearch(chatId, productType) {
   }
 }
 
-// Webhook handler
 bot.on('message', async msg => {
   const chatId = msg.chat.id;
   const text = msg.text?.trim();
   if (!text) return;
 
+  const session = sessions[chatId];
   try {
-    const session = sessions[chatId];
-
-    // 1️⃣ Handle more recommendations
     if (session?.stage === 'moreRecommendations') {
       if (text.toLowerCase() === 'yes') {
         const rec = await searchProducts(session.searchQuery, '', 1, session.offset, session.limit);
@@ -58,7 +60,6 @@ bot.on('message', async msg => {
             caption: `${p.name}\nType: ${p.type}\nPrice: ₹${p.price}\nDelivery: ${p.deliveryDays} days`
           });
         }
-
         if (rec.moreAvailable) {
           session.offset += session.limit;
           bot.sendMessage(chatId, 'Do you want to see more? (yes/no)');
@@ -74,7 +75,6 @@ bot.on('message', async msg => {
       }
     }
 
-    // 2️⃣ Detect product type
     const productTypes = ['shoe', 'formal', 'casual', 'chappal', 'flipflop', 'sports'];
     const productType = productTypes.find(pt => text.toLowerCase().includes(pt));
     if (productType) {
@@ -82,15 +82,13 @@ bot.on('message', async msg => {
       return;
     }
 
-    // 3️⃣ Size input
     if (session?.stage === 'size') {
       session.size = text;
-      bot.sendMessage(chatId, 'Great! Please provide your address and pincode for delivery check.');
+      bot.sendMessage(chatId, 'Great! Please provide your address and pincode.');
       session.stage = 'address';
       return;
     }
 
-    // 4️⃣ Address input
     if (session?.stage === 'address') {
       session.address = text;
       const sku = session.selectedSku;
@@ -98,35 +96,34 @@ bot.on('message', async msg => {
       if (!inv.ok || !inv.totalAvailable)
         return bot.sendMessage(chatId, 'Sorry, the item is not available near you.');
 
-      await bot.sendMessage(chatId, `✅ ${inv.name} is available and can be delivered soon.`);
+      await bot.sendMessage(chatId, `✅ ${inv.name} is available.`);
 
-      // 5️⃣ Payment
       await bot.sendMessage(chatId, 'Opening Google Pay... 💳');
       const pay = await processPayment('order-' + Date.now(), 10000, 'gpay');
       await bot.sendMessage(chatId, `✅ ${pay.confirmation}`);
 
-      // 6️⃣ Fulfillment
       await createFulfillment({
         orderId: 'order-' + Date.now(),
         items: [{ sku, qty: 1 }],
         address: session.address,
         pincode: '560001'
       });
-      await bot.sendMessage(chatId, '🎉 Order placed successfully! Thank you!');
+      await bot.sendMessage(chatId, '🎉 Order placed successfully!');
       sessions[chatId] = null;
       return;
     }
-
   } catch (err) {
     console.error(err);
     bot.sendMessage(chatId, '⚠️ Something went wrong.');
   }
 });
 
-// Express route for Vercel serverless function
-app.post('/api/telegram', (req, res) => {
-  bot.processUpdate(req.body);
-  res.sendStatus(200);
-});
+// ---- Start all gRPC agents ----
+startRecommendationAgent();
+startInventoryAgent();
+startPaymentAgent();
+startFulfillmentAgent();
 
-export default app;
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+});
