@@ -15,7 +15,8 @@
     "@google/generative-ai": "^0.5.0",
     "@grpc/grpc-js": "^1.8.18",
     "@grpc/proto-loader": "^0.7.6",
-    "dotenv": "^16.4.5",
+    "dotenv": "^16.6.1",
+    "express": "^5.1.0",
     "node-telegram-bot-api": "^0.66.0"
   },
   "devDependencies": {
