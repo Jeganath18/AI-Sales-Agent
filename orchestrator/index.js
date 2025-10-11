@@ -1,32 +1,48 @@
 // orchestrator/index.js
 require('dotenv').config();
-const express = require('express');
+const grpc = require('@grpc/grpc-js');
+const protoLoader = require('@grpc/proto-loader');
 const TelegramBot = require('node-telegram-bot-api');
-const { checkInventory, searchProducts, processPayment, createFulfillment } = require('./grpc_clients');
+const path = require('path');
+const { searchProducts, checkInventory, processPayment, createFulfillment } = require('./grpc_clients');
 
-// Load internal agents (they start gRPC servers)
-const { startRecommendationAgent } = require('../agents/recommendationAgent');
-const { startInventoryAgent } = require('../agents/inventoryAgent');
-const { startPaymentAgent } = require('../agents/paymentAgent');
-const { startFulfillmentAgent } = require('../agents/fulfillmentAgent');
+// Load gRPC handlers from agents
+const { Search } = require('../agents/recommendationAgent');
+const { CheckInventory } = require('../agents/inventoryAgent');
+const { ProcessPayment } = require('../agents/paymentAgent');
+const { FulfillOrder } = require('../agents/fulfillmentAgent');
 
-const app = express();
-app.use(express.json());
-const PORT = process.env.PORT || 3000;
+// Load proto
+const PROTO_PATH = path.join(__dirname, '../proto/agents.proto');
+const pkgDef = protoLoader.loadSync(PROTO_PATH, { keepCase: true, longs: String, enums: String, defaults: true, oneofs: true });
+const proto = grpc.loadPackageDefinition(pkgDef).agents;
 
-// Start all micro-agents
-// startRecommendationAgent();
-// startInventoryAgent();
-// startPaymentAgent();
-// startFulfillmentAgent();
-// It will start automaticaly while import
+// =======================
+// 1️⃣ Start gRPC server
+// =======================
+const grpcServer = new grpc.Server();
 
-// ✅ Telegram Bot (Polling)
+// Register all agent services
+grpcServer.addService(proto.RecommendationService.service, { Search });
+grpcServer.addService(proto.InventoryService.service, { CheckInventory });
+grpcServer.addService(proto.PaymentService.service, { ProcessPayment });
+grpcServer.addService(proto.FulfillmentService.service, { FulfillOrder });
+
+const GRPC_PORT = 50051; // Internal port for gRPC
+grpcServer.bindAsync(`0.0.0.0:${GRPC_PORT}`, grpc.ServerCredentials.createInsecure(), () => {
+  grpcServer.start();
+  console.log(`🧠 All gRPC agents running on port ${GRPC_PORT}`);
+});
+
+// =======================
+// 2️⃣ Start Telegram bot
+// =======================
 const bot = new TelegramBot(process.env.TELEGRAM_TOKEN, { polling: true });
-console.log('🤖 Telegram bot is running with polling...');
+console.log('🤖 Telegram bot polling is running...');
 
 const sessions = {};
 
+// Helper: send first products
 async function handleProductSearch(chatId, productType) {
   const rec = await searchProducts(productType, '', 1, 0, 3);
   if (!rec.ok || rec.products.length === 0) {
@@ -40,7 +56,7 @@ async function handleProductSearch(chatId, productType) {
   }
 
   if (rec.moreAvailable) {
-    bot.sendMessage(chatId, 'Would you like to see more? (yes/no)');
+    bot.sendMessage(chatId, 'Would you like to see more recommendations? (yes/no)');
     sessions[chatId] = {
       stage: 'moreRecommendations',
       searchQuery: productType,
@@ -54,6 +70,9 @@ async function handleProductSearch(chatId, productType) {
   }
 }
 
+// =======================
+// 3️⃣ Bot message handler
+// =======================
 bot.on('message', async msg => {
   const chatId = msg.chat.id;
   const text = msg.text?.trim();
@@ -61,6 +80,7 @@ bot.on('message', async msg => {
   const session = sessions[chatId];
 
   try {
+    // ✅ More recommendations stage
     if (session?.stage === 'moreRecommendations') {
       if (text.toLowerCase() === 'yes') {
         const rec = await searchProducts(session.searchQuery, '', 1, session.offset, session.limit);
@@ -85,6 +105,7 @@ bot.on('message', async msg => {
       }
     }
 
+    // ✅ Detect product type
     const productTypes = ['shoe', 'formal', 'casual', 'chappal', 'flipflop', 'sports'];
     const productType = productTypes.find(pt => text.toLowerCase().includes(pt));
     if (productType) {
@@ -92,6 +113,7 @@ bot.on('message', async msg => {
       return;
     }
 
+    // ✅ Size stage
     if (session?.stage === 'size') {
       session.size = text;
       bot.sendMessage(chatId, 'Great! Please provide your address and pincode.');
@@ -99,6 +121,7 @@ bot.on('message', async msg => {
       return;
     }
 
+    // ✅ Address stage
     if (session?.stage === 'address') {
       session.address = text;
       const sku = session.selectedSku;
@@ -122,11 +145,11 @@ bot.on('message', async msg => {
       sessions[chatId] = null;
       return;
     }
+
   } catch (err) {
     console.error(err);
     bot.sendMessage(chatId, '⚠️ Something went wrong.');
   }
 });
 
-app.get('/', (_, res) => res.send('🚀 Nexa AI Orchestrator is running.'));
-app.listen(PORT, () => console.log(`🌐 Server ready on port ${PORT}`));
+console.log('🚀 Nexa AI Orchestrator is fully running.');

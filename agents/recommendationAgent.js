@@ -17,10 +17,9 @@ const pkgDef = protoLoader.loadSync(PROTO_PATH, {
 });
 const proto = grpc.loadPackageDefinition(pkgDef).agents;
 
-/**
- * gRPC Search implementation
- * Handles product, type, gender, and availability
- */
+// ==============================
+// 1️⃣ gRPC Search implementation
+// ==============================
 function Search(call, callback) {
   const { q = '', type, gender, qty = 1, offset = 0, limit = 3 } = call.request;
 
@@ -31,20 +30,20 @@ function Search(call, callback) {
 
   let results = catalog.products;
 
-  // 1️⃣ Filter by search query
+  // Filter by search query
   if (q) {
     results = results.filter((p) =>
       p.name.toLowerCase().includes(q.toLowerCase())
     );
   }
 
-  // 2️⃣ Normalize shoe types
+  // Filter by type
   const validTypes = ['formal', 'casual', 'chappal', 'flipflop', 'slipper', 'sports'];
   if (type && validTypes.includes(type.toLowerCase())) {
     results = results.filter((p) => p.type.toLowerCase() === type.toLowerCase());
   }
 
-  // 3️⃣ Filter by gender
+  // Filter by gender
   if (gender) {
     results = results.filter(
       (p) =>
@@ -53,14 +52,14 @@ function Search(call, callback) {
     );
   }
 
-  // 4️⃣ Availability check
+  // Availability check
   results = results.map((p) => {
     const item = inv.items.find((i) => i.sku === p.sku);
     const totalQty = (item?.storeQty || 0) + (item?.stockroomQty || 0);
     return { ...p, available: totalQty >= qty };
   });
 
-  // 5️⃣ Pagination: first 'limit' items starting at 'offset'
+  // Pagination
   const pagedResults = results.slice(offset, offset + limit);
   const moreAvailable = offset + limit < results.length;
 
@@ -74,10 +73,17 @@ function Search(call, callback) {
   });
 }
 
-const server = new grpc.Server();
-server.addService(proto.RecommendationService.service, { Search });
+// ==============================
+// 2️⃣ Export a startup function
+// ==============================
+function startRecommendationAgent(port = 50052) {
+  const server = new grpc.Server();
+  server.addService(proto.RecommendationService.service, { Search });
 
-server.bindAsync('0.0.0.0:50052', grpc.ServerCredentials.createInsecure(), () => {
-  server.start();
-  console.log('🧠 RecommendationAgent running on port 50052');
-});
+  server.bindAsync(`0.0.0.0:${port}`, grpc.ServerCredentials.createInsecure(), () => {
+    server.start();
+    console.log(`🧠 RecommendationAgent running on port ${port}`);
+  });
+}
+
+module.exports = { startRecommendationAgent, Search };
