@@ -39,17 +39,19 @@ grpcServer.bindAsync(`0.0.0.0:${GRPC_PORT}`, grpc.ServerCredentials.createInsecu
 const app = express();
 app.use(express.json());
 
-const bot = new TelegramBot(process.env.TELEGRAM_TOKEN);
-const RENDER_URL = process.env.RENDER_EXTERNAL_URL || 'http://localhost:3000';
-bot.setWebHook("https://ai-sales-agent-ln48.onrender.com/telegram-webhook");
-console.log(`🤖 Telegram bot webhook set at ${RENDER_URL}/telegram-webhook`);
+// Hardcoded Render URL
+const BOT_WEBHOOK_URL = "https://ai-sales-agent-ln48.onrender.com/telegram-webhook";
 
-// Webhook endpoint
+// Initialize bot in webhook mode
+const bot = new TelegramBot(process.env.TELEGRAM_TOKEN, { webHook: true });
+
+
+// Webhook endpoint to receive updates from Telegram
 app.post('/telegram-webhook', (req, res) => {
+  console.log('Webhook update received:', req.body.update_id);
   bot.processUpdate(req.body);
   res.sendStatus(200);
 });
-
 // Health check
 app.get('/', (_, res) => res.send('🚀 Nexa AI Orchestrator running.'));
 
@@ -151,5 +153,26 @@ bot.on('message', async msg => {
 // 5️⃣ Start Express
 // =======================
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`🌐 HTTP server running on port ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`🌐 HTTP server running on port ${PORT}`);
+  
+  // Wait 2 seconds for server to be fully ready, then set webhook
+  setTimeout(async () => {
+    try {
+      console.log('🔧 Removing old webhook...');
+      await bot.deleteWebHook({ drop_pending_updates: true });
+      
+      console.log('🔧 Setting new webhook...');
+      await bot.setWebHook(BOT_WEBHOOK_URL);
+      
+      // Verify it worked
+      const info = await bot.getWebHookInfo();
+      console.log('✅ Webhook set successfully!');
+      console.log('📋 URL:', info.url);
+      console.log('📋 Pending updates:', info.pending_update_count);
+    } catch (error) {
+      console.error('❌ Error setting webhook:', error.message);
+    }
+  }, 2000); // 2 second delay
+});
 console.log('🚀 Nexa AI Orchestrator is fully running.');
