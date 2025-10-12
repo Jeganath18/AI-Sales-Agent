@@ -43,7 +43,7 @@ app.use(express.json());
 const BOT_WEBHOOK_URL = "https://ai-sales-agent-ln48.onrender.com/telegram-webhook";
 
 // Initialize bot in webhook mode
-const bot = new TelegramBot(process.env.TELEGRAM_TOKEN, { webHook: true });
+const bot = new TelegramBot(process.env.TELEGRAM_TOKEN, { polling:false });
 
 
 // Webhook endpoint to receive updates from Telegram
@@ -83,12 +83,16 @@ async function handleProductSearch(chatId, productType) {
 // 4️⃣ Telegram bot message handler
 // =======================
 bot.on('message', async msg => {
+  console.log('🎯 MESSAGE EVENT TRIGGERED!'); // Debug line
+  console.log('Message object:', JSON.stringify(msg, null, 2)); 
   const chatId = msg.chat.id;
   const text = msg.text?.trim();
   if (!text) return;
   const session = sessions[chatId];
 
   try {
+      await bot.sendMessage(chatId, `✅ Got your message: "${text}"`);
+      console.log('✅ Test reply sent successfully');
     if (session?.stage === 'moreRecommendations') {
       if (text.toLowerCase() === 'yes') {
         const rec = await searchProducts(session.searchQuery, '', 1, session.offset, session.limit);
@@ -148,6 +152,16 @@ bot.on('message', async msg => {
     bot.sendMessage(chatId, '⚠️ Something went wrong.');
   }
 });
+
+bot.on('error', (error) => {
+  console.error('❌ Bot error:', error);
+});
+
+bot.on('polling_error', (error) => {
+  console.error('❌ Polling error:', error);
+});
+
+
 
 // =======================
 // 5️⃣ Start Express
