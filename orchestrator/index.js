@@ -192,23 +192,46 @@ bot.on('message', async (msg) => {
     }
 
     // 👥 Stage 2: Get gender preference
-    if (session.stage === 'askGender') {
-      if (detectedGender) {
-        session.gender = detectedGender === 'self' ? 'unisex' : detectedGender;
-        const fetchMsg = await aiReply(
-          `You are Nexa. Got it! Fetching ${session.productType} for ${session.gender === 'unisex' ? 'you' : session.gender === 'male' ? 'boys' : 'girls'}. Say this excitedly in 1 sentence.`
-        );
-        await bot.sendMessage(chatId, fetchMsg);
-        await handleProductSearch(chatId, session.productType, session.gender);
-        sessions[chatId] = { ...session, stage: 'showingProducts', shownCount: 3 };
-      } else {
-        const retryGender = await aiReply(
-          "You are Nexa. User didn't specify gender clearly. Ask again if it's for a boy or girl, in a playful way. One sentence."
-        );
-        await bot.sendMessage(chatId, retryGender);
-      }
-      return;
-    }
+if (session.stage === 'askGender') {
+  if (detectedGender) {
+    session.gender = detectedGender === 'self' ? 'unisex' : detectedGender;
+
+    // Define your allowed nickname options
+    const genderNicknames = {
+      male: ['cool dude', 'gentleman', 'style king', 'trendsetter', 'handsome gent'],
+      female: ['marvelous miss', 'style queen', 'fashion diva', 'elegant lady', 'trend icon'],
+      unisex: ['fashion star', 'style champ', 'trend lover']
+    };
+
+    // Randomly pick one nickname
+    const nick = genderNicknames[session.gender]?.[
+      Math.floor(Math.random() * genderNicknames[session.gender].length)
+    ] || 'fashion lover';
+
+    // Generate a lively one-liner with Gemini
+    const fetchMsg = await aiReply(
+      `You are Nexa — a friendly AI shopping assistant with personality.
+      The user identified as ${session.gender}. 
+      Respond in one short, lively line, starting with something like "Got it, ${nick}!" or "Alright, ${nick}!"
+      Mention fetching ${session.productType} for them in a fun, excited tone (use emojis naturally).`
+    );
+
+    await bot.sendMessage(chatId, fetchMsg);
+
+    await handleProductSearch(chatId, session.productType, session.gender);
+    sessions[chatId] = { ...session, stage: 'showingProducts', shownCount: 3 };
+
+  } else {
+    const retryGender = await aiReply(
+      `You are Nexa — a playful AI shopping assistant.
+      The user didn’t specify gender clearly. 
+      Ask again if the product is for a boy or a girl, using one engaging, human-sounding line.`
+    );
+    await bot.sendMessage(chatId, retryGender);
+  }
+  return;
+}
+
 
     // 👟 Stage 3: After showing products
     if (session.stage === 'showingProducts') {
