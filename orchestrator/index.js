@@ -128,137 +128,209 @@ bot.on('message', async (msg) => {
   if (!firstTimeUsers.has(chatId) && !sessions[chatId]) {
     firstTimeUsers.add(chatId);
     const autoGreeting = await aiReply(
-      "You are Nexa, a witty AI footwear expert. A customer just opened the chat. Give them a warm, funny welcome that feels natural (not robotic). Mention you're here to help them find amazing shoes. Keep it brief, 2-3 sentences max, with personality."
+      "You are Nexa, a witty AI footwear expert. A customer just opened the chat. Give them a warm, funny welcome. Ask what type of footwear they're looking for (shoes, slippers, chappals, or flip-flops). Keep it brief, 2-3 sentences max, with personality."
     );
     await bot.sendMessage(chatId, autoGreeting);
+    sessions[chatId] = { stage: 'footwearType' };
+    return;
   }
 
-  const session = sessions[chatId] || {};
+  const session = sessions[chatId] || { stage: 'footwearType' };
   const productTypes = ['formal', 'casual', 'sports', 'flipflop', 'slipper', 'chappal'];
-  const shoeMentioned = text.includes('shoe') || text.includes('shoes') || 
-                        text.includes('flipflop') || text.includes('slipper') || 
-                        text.includes('chappal') || text.includes('footwear');
+  const footwearMentioned = text.includes('shoe') || text.includes('shoes') || 
+                            text.includes('flipflop') || text.includes('slipper') || 
+                            text.includes('chappal') || text.includes('footwear') ||
+                            text.includes('flip-flop') || text.includes('sandal');
+  
+  // Check for gender mentions
+  const genderMentions = {
+    male: ['boy', 'man', 'male', 'him', 'his', 'men', 'guys', 'gents'],
+    female: ['girl', 'woman', 'female', 'her', 'women', 'ladies', 'lady'],
+    self: ['me', 'myself', 'my own', 'for me']
+  };
+  
+  let detectedGender = null;
+  if (genderMentions.male.some(word => text.includes(word))) detectedGender = 'male';
+  if (genderMentions.female.some(word => text.includes(word))) detectedGender = 'female';
+  if (genderMentions.self.some(word => text.includes(word))) detectedGender = 'self';
+
   const matchedType = productTypes.find(pt => text.includes(pt));
 
   try {
-    console.log(`🗣️ Received: ${text}`);
+    console.log(`🗣️ Received: ${text} | Stage: ${session.stage}`);
 
-    // 🎯 Case 1: User mentioned specific shoe type
-    if (shoeMentioned && matchedType) {
-      const intro = await aiReply(
-        `You are Nexa, a fun AI shopping buddy. The user wants ${matchedType} shoes. Respond with excitement and personality in 1-2 short sentences. Add a playful emoji. Make it feel like you're genuinely hyped to show them options.`
-      );
-      await bot.sendMessage(chatId, intro);
-      await handleProductSearch(chatId, matchedType);
-      sessions[chatId] = { stage: 'recommendation', type: matchedType };
-      return;
-    }
-
-    // 👟 Case 2: User said "shoe" but no specific type
-    if (shoeMentioned && !matchedType && session.stage !== 'askShoeType') {
-      const typePrompt = await aiReply(
-        `You are Nexa. The user wants shoes but didn't specify the type. Ask them what style they prefer (formal, casual, or sports) in a fun, conversational way. Include emojis but keep it under 3 sentences. Make it feel like a friend asking, not a form.`
-      );
-      await bot.sendMessage(chatId, typePrompt);
-      sessions[chatId] = { stage: 'askShoeType' };
-      return;
-    }
-
-    // 🛍️ Case 3: Handle more recommendations
-    if (session.stage === 'moreRecommendations') {
-      const followUp = await aiReply(
-        `You are Nexa. The user just saw some shoe recommendations. Ask if they want to see more options or if they're ready to pick their size. Be casual and friendly, like a shopping buddy. Keep it brief and conversational with a touch of humor.`
-      );
-      await bot.sendMessage(chatId, followUp);
-      
-      if (text.includes('yes') || text.includes('more') || text.includes('sure')) {
-        const rec = await searchProducts(session.searchQuery, '', 1, session.offset, session.limit);
-        for (const p of rec.products) {
-          await bot.sendPhoto(chatId, p.imageUrl, {
-            caption: `${p.name}\n${p.type} | ₹${p.price}\n🚚 Delivers in ${p.deliveryDays} days`,
-          });
-        }
-        session.offset += session.limit;
-        if (rec.moreAvailable) {
-          sessions[chatId] = { ...session, offset: session.offset };
+    // 🎯 Stage 1: Ask for footwear type
+    if (session.stage === 'footwearType') {
+      if (footwearMentioned || matchedType) {
+        const type = matchedType || 'casual';
+        session.productType = type;
+        
+        // Check if gender already mentioned
+        if (detectedGender && detectedGender !== 'self') {
+          session.gender = detectedGender;
+          const fetchMsg = await aiReply(
+            `You are Nexa. User wants ${type} for a ${detectedGender}. Acknowledge this excitedly and say you're fetching the best options. Keep it 1-2 sentences with personality.`
+          );
+          await bot.sendMessage(chatId, fetchMsg);
+          await handleProductSearch(chatId, type, detectedGender);
+          sessions[chatId] = { ...session, stage: 'showingProducts', shownCount: 3 };
         } else {
-          sessions[chatId] = { stage: 'size', selectedSku: rec.products[0].sku };
+          // Ask for gender
+          const genderPrompt = await aiReply(
+            `You are Nexa. User wants ${type}. Ask if it's for a boy or girl in a fun, conversational way. Keep it brief, one sentence.`
+          );
+          await bot.sendMessage(chatId, genderPrompt);
+          sessions[chatId] = { ...session, stage: 'askGender' };
         }
       } else {
+        const clarifyMsg = await aiReply(
+          `You are Nexa. User didn't specify footwear type clearly. Ask again what they're looking for (shoes, slippers, chappals, flip-flops) in a friendly, humorous way. Keep it 2 sentences max.`
+        );
+        await bot.sendMessage(chatId, clarifyMsg);
+      }
+      return;
+    }
+
+    // 👥 Stage 2: Get gender preference
+    if (session.stage === 'askGender') {
+      if (detectedGender) {
+        session.gender = detectedGender === 'self' ? 'unisex' : detectedGender;
+        const fetchMsg = await aiReply(
+          `You are Nexa. Got it! Fetching ${session.productType} for ${session.gender === 'unisex' ? 'you' : session.gender === 'male' ? 'boys' : 'girls'}. Say this excitedly in 1 sentence.`
+        );
+        await bot.sendMessage(chatId, fetchMsg);
+        await handleProductSearch(chatId, session.productType, session.gender);
+        sessions[chatId] = { ...session, stage: 'showingProducts', shownCount: 3 };
+      } else {
+        const retryGender = await aiReply(
+          "You are Nexa. User didn't specify gender clearly. Ask again if it's for a boy or girl, in a playful way. One sentence."
+        );
+        await bot.sendMessage(chatId, retryGender);
+      }
+      return;
+    }
+
+    // 👟 Stage 3: After showing products
+    if (session.stage === 'showingProducts') {
+      // Check if user wants more recommendations
+      if (text.includes('more') || text.includes('other') || text.includes('different') || 
+          text.includes('another') || text.includes('else')) {
+        const moreMsg = await aiReply(
+          "You are Nexa. User wants more options. Say you're fetching more cool styles. Be enthusiastic, one sentence."
+        );
+        await bot.sendMessage(chatId, moreMsg);
+        await handleProductSearch(chatId, session.productType, session.gender, session.shownCount);
+        session.shownCount += 3;
+        sessions[chatId] = { ...session };
+        return;
+      }
+      
+      // Check if user selected a product by name or number
+      const numberMatch = text.match(/\b([1-3])\b/);
+      const hasProductName = text.length > 3 && !text.includes('size');
+      
+      if (numberMatch || hasProductName) {
+        session.selectedProduct = numberMatch ? `Product ${numberMatch[1]}` : text;
         const sizePrompt = await aiReply(
-          "You are Nexa. Time to get their shoe size. Ask for it in a fun, casual way. Keep it super short."
+          `You are Nexa. User selected "${session.selectedProduct}". Great choice! Now ask for their shoe size in a fun way. Keep it brief, 1-2 sentences.`
         );
         await bot.sendMessage(chatId, sizePrompt);
-        sessions[chatId] = { stage: 'size', selectedSku: session.selectedSku };
+        sessions[chatId] = { ...session, stage: 'getSize' };
+        return;
       }
+      
+      // Ask if they want more or if they liked something
+      const askMore = await aiReply(
+        "You are Nexa. Ask the user if they liked any of the products shown or if they want to see more options. Be casual and friendly, 1-2 sentences."
+      );
+      await bot.sendMessage(chatId, askMore);
       return;
     }
 
-    // 👣 Case 4: Collect size
-    if (session.stage === 'size') {
-      session.size = text;
-      const addressPrompt = await aiReply(
-        "You are Nexa. User just gave their shoe size. Acknowledge it with enthusiasm and ask for delivery address + pincode. Be brief and friendly with a touch of humor."
-      );
-      await bot.sendMessage(chatId, addressPrompt);
-      session.stage = 'address';
-      return;
-    }
-
-    // 🏠 Case 5: Collect address and process order
-    if (session.stage === 'address') {
-      session.address = text;
-      const sku = session.selectedSku;
+    // 📏 Stage 4: Get shoe size
+    if (session.stage === 'getSize') {
+      const sizeMatch = text.match(/\b(\d{1,2})\b/) || text.match(/size\s*(\d{1,2})/i);
       
-      const checkingMsg = await aiReply(
-        "You are Nexa. Tell user you're checking inventory near them. Make it fun and anticipatory in one sentence."
-      );
-      await bot.sendMessage(chatId, checkingMsg);
-      
-      const inv = await checkInventory(sku, 1, '560001');
-
-      if (!inv.ok || !inv.totalAvailable) {
-        const sorryMsg = await aiReply(
-          "You are Nexa. The item isn't available. Apologize with empathy and humor. Offer to help find alternatives. Keep it short."
+      if (sizeMatch) {
+        session.size = sizeMatch[1];
+        const addressPrompt = await aiReply(
+          `You are Nexa. User gave size ${session.size}. Perfect! Now ask for their delivery address and pincode. Be enthusiastic and brief, 1-2 sentences.`
         );
-        return bot.sendMessage(chatId, sorryMsg);
+        await bot.sendMessage(chatId, addressPrompt);
+        sessions[chatId] = { ...session, stage: 'getAddress' };
+      } else {
+        const retrySizeMsg = await aiReply(
+          "You are Nexa. Couldn't catch the size. Ask again for their shoe size (like 7, 8, 9, etc.) in a playful way. Keep it super short."
+        );
+        await bot.sendMessage(chatId, retrySizeMsg);
       }
-
-      const stockMsg = await aiReply(
-        `You are Nexa. Great news - ${inv.name} is in stock! Announce it with excitement. Keep it to 1 sentence with an emoji.`
-      );
-      await bot.sendMessage(chatId, stockMsg);
-      
-      const paymentMsg = await aiReply(
-        "You are Nexa. Now processing payment. Mention it's secure. Be reassuring but brief, one sentence."
-      );
-      await bot.sendMessage(chatId, paymentMsg);
-      
-      const pay = await processPayment('order-' + Date.now(), 10000, 'gpay');
-      
-      const successMsg = await aiReply(
-        "You are Nexa. Payment successful! Order is placed. Celebrate with the user. Add excitement about delivery. End with a fun question about showing accessories next time. Keep it 2-3 sentences max."
-      );
-      await bot.sendMessage(chatId, successMsg);
-
-      await createFulfillment({
-        orderId: 'order-' + Date.now(),
-        items: [{ sku, qty: 1 }],
-        address: session.address,
-        pincode: '560001',
-      });
-
-      sessions[chatId] = null;
       return;
     }
 
-    // 🗣️ Default: AI handles everything else
+    // 🏠 Stage 5: Get address and pincode
+    if (session.stage === 'getAddress') {
+      session.address = text;
+      const pincodeMatch = text.match(/\b(\d{6})\b/);
+      
+      if (pincodeMatch) {
+        session.pincode = pincodeMatch[1];
+        
+        // Start order processing
+        const checkingMsg = await aiReply(
+          "You are Nexa. Checking stock availability for their order. Make it sound exciting and quick. One sentence with an emoji."
+        );
+        await bot.sendMessage(chatId, checkingMsg);
+        
+        // Simulate inventory check
+        const sku = session.selectedSku || 'SKU-001';
+        const inv = await checkInventory(sku, 1, session.pincode);
+
+        if (!inv.ok || !inv.totalAvailable) {
+          const sorryMsg = await aiReply(
+            "You are Nexa. Item not available at their location. Apologize with empathy and humor. Offer alternatives. Keep it 2 sentences."
+          );
+          await bot.sendMessage(chatId, sorryMsg);
+          sessions[chatId] = { stage: 'footwearType' };
+          return;
+        }
+
+        const processingMsg = await aiReply(
+          "You are Nexa. Stock confirmed! Now placing the order and processing payment securely. Say this confidently in 1-2 sentences."
+        );
+        await bot.sendMessage(chatId, processingMsg);
+        
+        // Process payment
+        const pay = await processPayment('order-' + Date.now(), 10000, 'gpay');
+        
+        // Create fulfillment
+        await createFulfillment({
+          orderId: 'order-' + Date.now(),
+          items: [{ sku, qty: 1 }],
+          address: session.address,
+          pincode: session.pincode,
+        });
+
+        const successMsg = await aiReply(
+          `You are Nexa. Order placed successfully! Tell them it will be dispatched within 3-4 days and delivered to their doorstep. Celebrate this moment! Add excitement and maybe ask if they need anything else. Keep it 2-3 sentences.`
+        );
+        await bot.sendMessage(chatId, successMsg);
+        
+        sessions[chatId] = null;
+      } else {
+        const retryPincode = await aiReply(
+          "You are Nexa. Couldn't find the 6-digit pincode. Ask for address with pincode again, playfully. Keep it brief."
+        );
+        await bot.sendMessage(chatId, retryPincode);
+      }
+      return;
+    }
+
+    // 🗣️ Default: Handle unexpected input
     const aiResponse = await aiReply(
       `You are Nexa, a witty AI footwear sales agent. The user said: "${text}". 
-      If it seems like they want shoes, guide them conversationally toward formal/casual/sports options.
-      If it's chitchat, respond naturally and steer gently back to footwear.
-      If unclear, ask what they're looking for in a fun way.
-      Keep response under 3 sentences, be funny and human-like. Add relevant emojis.`
+      Current stage: ${session.stage || 'start'}. 
+      Guide them back on track conversationally. If they're asking for footwear, help them specify type and gender.
+      Be helpful, funny, and natural. Keep response under 3 sentences with relevant emojis.`
     );
     await bot.sendMessage(chatId, aiResponse);
 
@@ -270,6 +342,38 @@ bot.on('message', async (msg) => {
     bot.sendMessage(chatId, errorMsg);
   }
 });
+
+// Enhanced product search with gender filter
+async function handleProductSearch(chatId, type, gender = null, offset = 0) {
+  try {
+    const results = await searchProducts(type, gender, 3, offset);
+    
+    if (!results.products || results.products.length === 0) {
+      const noResultsMsg = await aiReply(
+        `You are Nexa. No products found for ${type}. Apologize and suggest trying a different category. Be empathetic and helpful. 2 sentences.`
+      );
+      await bot.sendMessage(chatId, noResultsMsg);
+      return;
+    }
+
+    for (let i = 0; i < results.products.length; i++) {
+      const p = results.products[i];
+      await bot.sendPhoto(chatId, p.imageUrl, {
+        caption: `${i + 1}. ${p.name}\n👤 ${p.gender || 'Unisex'} | ${p.type}\n💰 ₹${p.price}\n🚚 Delivers in ${p.deliveryDays || 3} days`,
+      });
+    }
+
+    // Save product info for later reference
+    if (sessions[chatId]) {
+      sessions[chatId].lastProducts = results.products;
+      sessions[chatId].selectedSku = results.products[0].sku;
+    }
+
+  } catch (error) {
+    console.error('Error in handleProductSearch:', error);
+    await bot.sendMessage(chatId, "Oops! Had trouble fetching products. Let me try again! 🔄");
+  }
+}
 
 bot.on('error', (error) => {
   console.error('❌ Bot error:', error);
