@@ -30,7 +30,7 @@ function CreateFulfillment(call, callback) {
 // ==============================
 // 2️⃣ Export a startup function
 // ==============================
-function startFulfillmentAgent(port = 50054) {
+function startFulfillmentAgent(port = 50051) {
   const server = new grpc.Server();
   server.addService(proto.FulfillmentService.service, { CreateFulfillment });
 

@@ -76,7 +76,7 @@ function Search(call, callback) {
 // ==============================
 // 2️⃣ Export a startup function
 // ==============================
-function startRecommendationAgent(port = 50052) {
+function startRecommendationAgent(port = 50051) {
   const server = new grpc.Server();
   server.addService(proto.RecommendationService.service, { Search });
 

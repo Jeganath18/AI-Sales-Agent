@@ -24,7 +24,7 @@ function ProcessPayment(call, callback) {
 // ==============================
 // 2️⃣ Export a startup function
 // ==============================
-function startPaymentAgent(port = 50053) {
+function startPaymentAgent(port = 50051) {
   const server = new grpc.Server();
   server.addService(proto.PaymentService.service, { ProcessPayment });
 
