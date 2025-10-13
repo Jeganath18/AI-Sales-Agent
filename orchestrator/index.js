@@ -303,12 +303,12 @@ bot.on('message', async (msg) => {
         const pay = await processPayment('order-' + Date.now(), 10000, 'gpay');
         
         // Create fulfillment
-        await createFulfillment({
-          orderId: 'order-' + Date.now(),
-          items: [{ sku, qty: 1 }],
-          address: session.address,
-          pincode: session.pincode,
-        });
+        // await createFulfillment({
+        //   orderId: 'order-' + Date.now(),
+        //   items: [{ sku, qty: 1 }],
+        //   address: session.address,
+        //   pincode: session.pincode,
+        // });
 
         const successMsg = await aiReply(
           `You are Nexa. Order placed successfully! Tell them it will be dispatched within 3-4 days and delivered to their doorstep. Celebrate this moment! Add excitement and maybe ask if they need anything else. Keep it 2-3 sentences.`
