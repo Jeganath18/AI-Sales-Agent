@@ -80,78 +80,136 @@ async function handleProductSearch(chatId, productType) {
 }
 
 // =======================
-// 4️⃣ Telegram bot message handler
+// 💬 Conversational Message Handler
 // =======================
-bot.on('message', async msg => {
-  console.log('🎯 MESSAGE EVENT TRIGGERED!'); // Debug line
-  console.log('Message object:', JSON.stringify(msg, null, 2)); 
+bot.on('message', async (msg) => {
   const chatId = msg.chat.id;
-  const text = msg.text?.trim();
-  if (!text) return;
-  const session = sessions[chatId];
+  const text = msg.text?.trim().toLowerCase();
+  if (!text || text.startsWith('/start')) return;
+
+  const session = sessions[chatId] || {};
+  const productTypes = ['formal', 'casual', 'sports'];
+  const shoeMentioned = text.includes('shoe') || text.includes('shoes');
+  const matchedType = productTypes.find(pt => text.includes(pt));
 
   try {
-      await bot.sendMessage(chatId, `✅ Got your message: "${text}"`);
-      console.log('✅ Test reply sent successfully');
-    if (session?.stage === 'moreRecommendations') {
-      if (text.toLowerCase() === 'yes') {
+    console.log(`🗣️ Received: ${text}`);
+
+    // 🎯 Case 1: User mentioned specific shoe type
+    if (shoeMentioned && matchedType) {
+      await bot.sendMessage(chatId, `👀 Hmm... ${matchedType} shoes, great pick! Let me find some options you'll love 👟`);
+      await handleProductSearch(chatId, matchedType);
+      sessions[chatId] = { stage: 'recommendation', type: matchedType };
+      return;
+    }
+
+    // 👟 Case 2: User said "shoe" or "shoes" but not the type
+    if (shoeMentioned && !matchedType && session.stage !== 'askShoeType') {
+      await bot.sendMessage(chatId,
+        `Got it! You’re looking for shoes 🥿  
+What style do you prefer?  
+
+👞 *Formal* — For office or classy outings  
+👟 *Casual* — For everyday comfort  
+🏃 *Sports* — For gym and active wear`,
+        { parse_mode: 'Markdown' }
+      );
+      sessions[chatId] = { stage: 'askShoeType' };
+      return;
+    }
+
+    // 🧩 Case 3: Respond after asking shoe type
+    if (session.stage === 'askShoeType') {
+      const selectedType = productTypes.find(pt => text.includes(pt));
+      if (!selectedType) {
+        await bot.sendMessage(chatId, `Please tell me one of these: *formal*, *casual*, or *sports* shoes 👞`, { parse_mode: 'Markdown' });
+        return;
+      }
+
+      await bot.sendMessage(chatId, `🔥 Awesome choice! Fetching some of the best *${selectedType}* shoes for you...`);
+      await handleProductSearch(chatId, selectedType);
+      sessions[chatId] = { stage: 'recommendation', type: selectedType };
+      return;
+    }
+
+    // 🛍️ Case 4: User wants to see more recommendations
+    if (session.stage === 'moreRecommendations') {
+      if (text === 'yes' || text === 'yep' || text === 'yeah') {
+        await bot.sendMessage(chatId, `🕵️ Pulling in more cool styles for you...`);
         const rec = await searchProducts(session.searchQuery, '', 1, session.offset, session.limit);
         for (const p of rec.products) {
           await bot.sendPhoto(chatId, p.imageUrl, {
-            caption: `${p.name}\nType: ${p.type}\nPrice: ₹${p.price}\nDelivery: ${p.deliveryDays} days`
+            caption: `${p.name}\nType: ${p.type}\nPrice: ₹${p.price}\nDelivery: ${p.deliveryDays} days`,
           });
         }
         if (rec.moreAvailable) {
           session.offset += session.limit;
-          bot.sendMessage(chatId, 'Do you want to see more? (yes/no)');
+          bot.sendMessage(chatId, `Want to see more? (yes/no)`);
         } else {
-          bot.sendMessage(chatId, 'Please tell me your shoe size (e.g., size 9).');
+          bot.sendMessage(chatId, `Got it! Now, what’s your shoe size? (e.g., size 9)`);
           sessions[chatId] = { stage: 'size', selectedSku: rec.products[0].sku };
         }
         return;
       } else {
-        bot.sendMessage(chatId, 'Please tell me your shoe size (e.g., size 9).');
+        bot.sendMessage(chatId, `Sure! Let's move ahead. What’s your shoe size? (e.g., size 9)`);
         sessions[chatId] = { stage: 'size', selectedSku: session.selectedSku };
         return;
       }
     }
 
-    const productTypes = ['shoe', 'formal', 'casual', 'chappal', 'flipflop', 'sports'];
-    const productType = productTypes.find(pt => text.toLowerCase().includes(pt));
-    if (productType) {
-      await handleProductSearch(chatId, productType);
-      return;
-    }
-
-    if (session?.stage === 'size') {
+    // 👣 Case 5: Collect size
+    if (session.stage === 'size') {
       session.size = text;
-      bot.sendMessage(chatId, 'Great! Please provide your address and pincode.');
+      await bot.sendMessage(chatId, `Perfect 👌 size noted! Now please share your *delivery address* and *pincode*.`);
       session.stage = 'address';
       return;
     }
 
-    if (session?.stage === 'address') {
+    // 🏠 Case 6: Collect address and process order
+    if (session.stage === 'address') {
       session.address = text;
       const sku = session.selectedSku;
+      await bot.sendMessage(chatId, `🔍 Checking availability near you...`);
       const inv = await checkInventory(sku, 1, '560001');
-      if (!inv.ok || !inv.totalAvailable) return bot.sendMessage(chatId, 'Sorry, item not available nearby.');
 
-      await bot.sendMessage(chatId, `✅ ${inv.name} is available for delivery.`);
-      await bot.sendMessage(chatId, 'Opening Google Pay... 💳');
+      if (!inv.ok || !inv.totalAvailable) {
+        return bot.sendMessage(chatId, `😔 Sorry, looks like that item isn’t available nearby right now.`);
+      }
+
+      await bot.sendMessage(chatId, `✅ Great news! *${inv.name}* is in stock and ready to ship 🚚`);
+      await bot.sendMessage(chatId, `💳 Processing your payment securely...`);
       const pay = await processPayment('order-' + Date.now(), 10000, 'gpay');
-      await bot.sendMessage(chatId, `✅ ${pay.confirmation}`);
+      await bot.sendMessage(chatId, `✅ Payment successful: ${pay.confirmation}`);
 
-      await createFulfillment({ orderId: 'order-' + Date.now(), items: [{ sku, qty: 1 }], address: session.address, pincode: '560001' });
-      await bot.sendMessage(chatId, '🎉 Order placed successfully!');
+      await createFulfillment({
+        orderId: 'order-' + Date.now(),
+        items: [{ sku, qty: 1 }],
+        address: session.address,
+        pincode: '560001',
+      });
+
+      await bot.sendMessage(chatId, `🎉 Order placed successfully!  
+You’ll receive your shoes at your doorstep soon 👟  
+Would you like me to show some matching accessories next time? 😉`);
       sessions[chatId] = null;
       return;
     }
 
+    // 🗣️ Default fallback for random text
+    await bot.sendMessage(chatId,
+      `I can help you find awesome footwear 👞  
+Try saying something like:  
+→ “Formal shoes”  
+→ “Casual shoes”  
+→ “Sports shoes”`
+    );
+
   } catch (err) {
-    console.error(err);
-    bot.sendMessage(chatId, '⚠️ Something went wrong.');
+    console.error('❌ Error in message handler:', err);
+    bot.sendMessage(chatId, `⚠️ Oops! Something went wrong. Please try again in a moment.`);
   }
 });
+
 
 bot.on('error', (error) => {
   console.error('❌ Bot error:', error);
