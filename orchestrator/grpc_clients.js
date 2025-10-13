@@ -8,9 +8,9 @@ const proto = grpc.loadPackageDefinition(pkgDef).agents;
 
 const clients = {
   inventory: new proto.InventoryService('localhost:50051', grpc.credentials.createInsecure()),
-  recommendation: new proto.RecommendationService('localhost:50052', grpc.credentials.createInsecure()),
-  payment: new proto.PaymentService('localhost:50053', grpc.credentials.createInsecure()),
-  fulfillment: new proto.FulfillmentService('localhost:50054', grpc.credentials.createInsecure())
+  recommendation: new proto.RecommendationService('localhost:50051', grpc.credentials.createInsecure()),
+  payment: new proto.PaymentService('localhost:50051', grpc.credentials.createInsecure()),
+  fulfillment: new proto.FulfillmentService('localhost:50051', grpc.credentials.createInsecure())
 };
 
 function checkInventory(sku, qty, pincode) {
