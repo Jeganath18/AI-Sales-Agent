@@ -410,7 +410,7 @@ bot.on('polling_error', (error) => {
 // =======================
 // 5️⃣ Start Express
 // =======================
-const PORT = process.env.PORT || 3000;
+const PORT = 80;
 app.listen(PORT, () => {
   console.log(`🌐 HTTP server running on port ${PORT}`);
 
