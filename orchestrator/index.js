@@ -56,7 +56,7 @@ const app = express();
 app.use(express.json());
 
 // Hardcoded Render URL
-const BOT_WEBHOOK_URL = "https://ai-sales-agent-ln48.onrender.com/telegram-webhook";
+const BOT_WEBHOOK_URL = "https://ai.jeganath.duckdns.org/telegram-webhook";
 
 // Initialize bot in webhook mode
 const bot = new TelegramBot(process.env.TELEGRAM_TOKEN, { polling: false });
