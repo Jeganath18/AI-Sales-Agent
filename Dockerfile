@@ -11,7 +11,7 @@ RUN npm install --production
 COPY . .
 
 # Expose ONLY the HTTP port (Traefik will route this)
-EXPOSE 3000
+EXPOSE 80
 
 # Start the orchestrator
 CMD ["node", "orchestrator/index.js"]
