@@ -59,7 +59,7 @@ app.use(express.json());
 const BOT_WEBHOOK_URL = "https://ai.jeganath.duckdns.org/telegram-webhook";
 
 // Initialize bot in webhook mode
-const bot = new TelegramBot(process.env.TELEGRAM_TOKEN, { polling: false });
+const bot = new TelegramBot("8348296956:AAH4BXG8peZ7aoooShsgj21V4IR9hnCprno", { polling: false });
 
 
 // Webhook endpoint to receive updates from Telegram
