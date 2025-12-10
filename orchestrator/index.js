@@ -5,12 +5,39 @@ const grpc = require('@grpc/grpc-js');
 const protoLoader = require('@grpc/proto-loader');
 const TelegramBot = require('node-telegram-bot-api');
 const path = require('path');
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+const OpenAI = require("openai");
+// const { GoogleGenerativeAI } = require("@google/generative-ai");
+
 const { searchProducts, checkInventory, processPayment, createFulfillment } = require('./grpc_clients');
 
 // Pass gemini key and create model instance
-const genAI = new GoogleGenerativeAI("AIzaSyBWvcAGHo0I01sr554nwAMDk3eRAsYN2Z8");
-const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+// const genAI = new GoogleGenerativeAI("AIzaSyBWvcAGHo0I01sr554nwAMDk3eRAsYN2Z8");
+// const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+
+const client = new OpenAI({
+  apiKey: "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",
+  baseURL: "https://api.groq.com/openai/v1",
+});
+
+async function aiReply(prompt) {
+  try {
+    const response = await client.chat.completions.create({
+      model: "llama-3.3-70b-versatile", // or another Groq model
+      messages: [
+        {
+          role: "user",
+          content: prompt
+        }
+      ],
+      temperature: 0.7,
+    });
+    
+    return response.choices[0].message.content;
+  } catch (err) {
+    console.error("❌ Groq API error:", err);
+    return "Hmm, I'm having trouble thinking right now 😅";
+  }
+}
 
 // Load gRPC handlers from agents
 const { Search } = require('../agents/recommendationAgent');
@@ -38,15 +65,15 @@ grpcServer.bindAsync(`0.0.0.0:${GRPC_PORT}`, grpc.ServerCredentials.createInsecu
   console.log(`🧠 All gRPC agents running on port ${GRPC_PORT}`);
 });
 
-async function aiReply(prompt) {
-  try {
-    const result = await model.generateContent(prompt);
-    return result.response.text();
-  } catch (err) {
-    console.error("❌ Gemini API error:", err);
-    return "Hmm, I’m having trouble thinking right now 😅";
-  }
-}
+// async function aiReply(prompt) {
+//   try {
+//     const result = await model.generateContent(prompt);
+//     return result.response.text();
+//   } catch (err) {
+//     console.error("❌ Gemini API error:", err);
+//     return "Hmm, I’m having trouble thinking right now 😅";
+//   }
+// }
 
 
 // =======================

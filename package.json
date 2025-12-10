@@ -17,7 +17,8 @@
     "@grpc/proto-loader": "^0.7.6",
     "dotenv": "^16.6.1",
     "express": "^5.1.0",
-    "node-telegram-bot-api": "^0.66.0"
+    "node-telegram-bot-api": "^0.66.0",
+    "openai": "^6.10.0"
   },
   "devDependencies": {
     "concurrently": "^9.2.1"
