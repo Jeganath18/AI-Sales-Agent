@@ -9,7 +9,7 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 const { searchProducts, checkInventory, processPayment, createFulfillment } = require('./grpc_clients');
 
 // Pass gemini key and create model instance
-const genAI = new GoogleGenerativeAI("AIzaSyA5at47ju2O1WudX-aaqwEKrqTlIwAHPFM");
+const genAI = new GoogleGenerativeAI("AIzaSyBWvcAGHo0I01sr554nwAMDk3eRAsYN2Z8");
 const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
 // Load gRPC handlers from agents
