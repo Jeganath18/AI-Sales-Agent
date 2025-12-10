@@ -8,7 +8,7 @@ env:
   REGISTRY: ghcr.io
   IMAGE: ${{ github.repository }}
   TAG: latest
-  DEPLOY_URL: https://jeganath.duckdns.org/deploy
+  DEPLOY_URL: https://deployer.jeganath.duckdns.org/deploy
   DEPLOY_TOKEN: abcd1234
   SERVICE_NAME: ai
   SERVICE_PORT: 3000
