@@ -84,10 +84,8 @@ const bot = new TelegramBot("8348296956:AAH4BXG8peZ7aoooShsgj21V4IR9hnCprno", { 
 
 
 // Webhook endpoint to receive updates from Telegram
-app.post('/telegram-webhook', (req, res) => {
-  console.log('Webhook update received:', req.body.update_id);
-  bot.processUpdate(req.body);
-  res.sendStatus(200);
+app.get('/telegram-webhook', (req, res) => {
+  res.status(200).send('Webhook is live');
 });
 // Health check
 app.get('/', (_, res) => res.send('🚀 Nexa AI Orchestrator running.'));
