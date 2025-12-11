@@ -15,27 +15,21 @@ const { searchProducts, checkInventory, processPayment, createFulfillment } = re
 // const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
 const client = new OpenAI({
-  apiKey: "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",
+  apiKey: process.env.GROQ_APIKEY,
   baseURL: "https://api.groq.com/openai/v1",
 });
 
 async function aiReply(prompt) {
   try {
-    const response = await client.chat.completions.create({
-      model: "llama-3.3-70b-versatile", // or another Groq model
-      messages: [
-        {
-          role: "user",
-          content: prompt
-        }
-      ],
-      temperature: 0.7,
+    const response = await client.responses.create({
+      model: "openai/gpt-oss-20b",
+      input: prompt,
     });
-    
-    return response.choices[0].message.content;
+
+    return response.output_text;
   } catch (err) {
-    console.error("❌ Groq API error:", err);
-    return "Hmm, I'm having trouble thinking right now 😅";
+    console.error("❌ AI API error:", err);
+    return err;
   }
 }
 
