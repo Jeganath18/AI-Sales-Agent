@@ -3,6 +3,15 @@ const grpc = require('@grpc/grpc-js');
 const protoLoader = require('@grpc/proto-loader');
 const fs = require('fs');
 const path = require('path');
+const OpenAI = require("openai");
+
+const client = new OpenAI({
+  apiKey: process.env.GROQ_APIKEY,
+  baseURL: "https://api.groq.com/openai/v1",
+});
+
+let cachedEmbeddings = null;
+
 
 const PROTO_PATH = path.join(__dirname, '../proto/agents.proto');
 const CATALOG_PATH = path.join(__dirname, '../data/productCatalog.json');
