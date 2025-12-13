@@ -44,6 +44,16 @@ async function buildProductEmbeddings(catalog) {
 
   return cachedEmbeddings;
 }
+function cosineSimilarity(a, b) {
+  let dot = 0, magA = 0, magB = 0;
+  for (let i = 0; i < a.length; i++) {
+    dot += a[i] * b[i];
+    magA += a[i] * a[i];
+    magB += b[i] * b[i];
+  }
+  return dot / (Math.sqrt(magA) * Math.sqrt(magB));
+}
+
 
 
 // ==============================
@@ -61,10 +71,26 @@ function Search(call, callback) {
 
   // Filter by search query
   if (q) {
-    results = results.filter((p) =>
-      p.name.toLowerCase().includes(q.toLowerCase())
-    );
-  }
+  const catalog = { products: results };
+
+  const embeddings = await buildProductEmbeddings(catalog);
+
+  const qRes = await client.embeddings.create({
+    model: "text-embedding-3-small",
+    input: q
+  });
+
+  const qVector = qRes.data[0].embedding;
+
+  results = embeddings
+    .map(e => ({
+      score: cosineSimilarity(qVector, e.vector),
+      product: e.product
+    }))
+    .sort((a, b) => b.score - a.score)
+    .map(x => x.product);
+}
+
 
   // Filter by type
   const validTypes = ['formal', 'casual', 'chappal', 'flipflop', 'slipper', 'sports'];
