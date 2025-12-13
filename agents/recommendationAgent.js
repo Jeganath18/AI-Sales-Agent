@@ -25,6 +25,26 @@ const pkgDef = protoLoader.loadSync(PROTO_PATH, {
   oneofs: true,
 });
 const proto = grpc.loadPackageDefinition(pkgDef).agents;
+async function buildProductEmbeddings(catalog) {
+  if (cachedEmbeddings) return cachedEmbeddings;
+
+  const texts = catalog.products.map(
+    p => `${p.name} ${p.type} ${p.gender} ${p.description} price ${p.price}`
+  );
+
+  const response = await client.embeddings.create({
+    model: "text-embedding-3-small",
+    input: texts
+  });
+
+  cachedEmbeddings = response.data.map((e, i) => ({
+    vector: e.embedding,
+    product: catalog.products[i]
+  }));
+
+  return cachedEmbeddings;
+}
+
 
 // ==============================
 // 1️⃣ gRPC Search implementation
