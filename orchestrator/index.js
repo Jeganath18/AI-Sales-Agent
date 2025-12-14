@@ -105,7 +105,7 @@ async function aiReply(prompt, context = {}) {
 const { Search } = require('../agents/recommendationAgent');
 const { CheckInventory } = require('../agents/inventoryAgent');
 const { ProcessPayment } = require('../agents/paymentAgent');
-const { FulfillOrder } = require('../agents/fulfillmentAgent');
+const { CreateFulfillment } = require('../agents/fulfillmentAgent');
 
 // Load proto
 const PROTO_PATH = path.join(__dirname, '../proto/agents.proto');
@@ -123,7 +123,7 @@ const grpcServer = new grpc.Server();
 grpcServer.addService(proto.RecommendationService.service, { Search });
 grpcServer.addService(proto.InventoryService.service, { CheckInventory });
 grpcServer.addService(proto.PaymentService.service, { ProcessPayment });
-grpcServer.addService(proto.FulfillmentService.service, { FulfillOrder });
+grpcServer.addService(proto.FulfillmentService.service, { createFulfillment });
 
 const GRPC_PORT = 50051;
 grpcServer.bindAsync(`0.0.0.0:${GRPC_PORT}`, grpc.ServerCredentials.createInsecure(), () => {
@@ -224,20 +224,20 @@ async function processOrder(chatId, session) {
 
     // Step 3: Create fulfillment
     await bot.sendMessage(chatId, "📦 Creating your order...");
-    const fulfillment = await createFulfillment({
-      orderId: orderId,
-      items: [{ sku: sku, qty: 1 }],
-      address: session.address,
-      pincode: session.pincode,
-    });
+    // const fulfillment = await createFulfillment({
+    //   orderId: orderId,
+    //   items: [{ sku: sku, qty: 1 }],
+    //   address: session.address,
+    //   pincode: session.pincode,
+    // });
 
-    if (!fulfillment.ok) {
-      await bot.sendMessage(chatId, "⚠️ Order created but fulfillment pending. Our team will contact you soon!");
-    }
+    // if (!fulfillment.ok) {
+    //   await bot.sendMessage(chatId, "⚠️ Order created but fulfillment pending. Our team will contact you soon!");
+    // }
 
     // Step 4: Send confirmation
     const successMsg = await aiReply(
-      `You are Nexa. Order ${orderId} placed successfully! Confirm the order details and tell them it will be delivered to ${session.address} in 3-4 days. Make it celebratory and ask if they need anything else.`,
+      `You are Nexa. Order ${orderId} placed successfully! Confirm the order details and tell them it will be delivered to ${session.address} in 3-4 days. Make it celebratory and thank them and ask them visit again with a sweet quote and complement them with a quote.`,
       { ...session, stage: 'orderComplete' }
     );
     

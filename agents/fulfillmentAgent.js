@@ -16,6 +16,7 @@ const proto = grpc.loadPackageDefinition(pkgDef).agents;
 // ==============================
 function CreateFulfillment(call, callback) {
   const data = call.request;
+  console.log(data);
   const fulfillments = fs.existsSync(FULFILL_PATH)
     ? JSON.parse(fs.readFileSync(FULFILL_PATH, 'utf8'))
     : [];
