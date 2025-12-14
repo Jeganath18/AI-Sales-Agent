@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  nexa_ai:
+    build: .
+    container_name: nexa_ai_service
+    environment:
+      - NODE_ENV=production
+      - GROQ_APIKEY=${GROQ_APIKEY}
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+    networks:
+      - traefik_default
+    labels:
+      - "traefik.enable=true"
+
+      # Service port inside the container
+      - "traefik.http.services.nexa_ai.loadbalancer.server.port=80"
+
+      # Router for main domain
+      - "traefik.http.routers.nexa_ai.rule=Host(\"jeganath.duckdns.org\")"
+
+      # Force HTTPS + Let's Encrypt
+      - "traefik.http.routers.nexa_ai.entrypoints=websecure"
+      - "traefik.http.routers.nexa_ai.tls.certresolver=le"
+
+    restart: unless-stopped
+
+networks:
+  traefik_default:
+    external: true
