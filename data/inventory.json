@@ -1,7 +1,63 @@
 {
   "items": [
-    { "sku": "SKU-001", "name": "Blue Casual Shoe", "storeQty": 4, "stockroomQty": 10 },
-    { "sku": "SKU-002", "name": "Black Formal Shoe", "storeQty": 2, "stockroomQty": 5 },
-    { "sku": "SKU-003", "name": "Lamborgini Car", "storeQty": 2, "stockroomQty": 5 }
+    { "sku": "SKU-10101", "name": "Stylish Blue Canvas Casual Shoes", "storeQty": 4, "stockroomQty": 110 },
+    { "sku": "SKU-10102", "name": "Classic Black Leather Formal Shoes", "storeQty": 2, "stockroomQty": 5 },
+    { "sku": "SKU-10103", "name": "Comfortable Tan Rubber Chappals", "storeQty": 2, "stockroomQty": 5 },
+
+    { "sku": "SKU-10104", "name": "Modern Grey Synthetic Flipflops", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-10105", "name": "Cozy Pink Velvet Slippers", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-10106", "name": "Running White Mesh Casual Shoes", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-10107", "name": "Elegant Beige Suede Formal Shoes", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-10108", "name": "Daily Wear Brown Leather Chappals", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-10109", "name": "Beach Ready Blue Rubber Flipflops", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-10110", "name": "Indoor Comfort Grey Cotton Slippers", "storeQty": 10, "stockroomQty": 10 },
+
+    { "sku": "SKU-1011", "name": "Party Wear Red Synthetic Casual Shoes", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-1012", "name": "Business Class Tan Leather Formal Shoes", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-1013", "name": "Ethnic Black Beaded Chappals", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-1014", "name": "Sporty Green Camo Flipflops", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-1015", "name": "Warm Woolen Brown Slippers", "storeQty": 10, "stockroomQty": 10 },
+
+    { "sku": "SKU-11016", "name": "Trendy Black Canvas Casual Shoes", "storeQty": 110, "stockroomQty": 10 },
+    { "sku": "SKU-1017", "name": "Corporate Chic Black Formal Shoes", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-1018", "name": "Simple Blue Rubber Chappals", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-1019", "name": "Glittery Silver Synthetic Flipflops", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-10210", "name": "Plush Blue Terrycloth Slippers", "storeQty": 10, "stockroomQty": 10 },
+
+    { "sku": "SKU-1021", "name": "Walking Green Mesh Casual Shoes", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-1022", "name": "Classic Brown Suede Formal Shoes", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-1023", "name": "Handcrafted Leather Tan Chappals", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-1024", "name": "Basic Black EVA Flipflops", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-1025", "name": "Furry White Indoor Slippers", "storeQty": 10, "stockroomQty": 10 },
+
+    { "sku": "SKU-1026", "name": "Modern Grey Canvas Casual Shoes", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-1027", "name": "Wedding Wear Golden Formal Shoes", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-1028", "name": "Rugged Black Synthetic Chappals", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-1029", "name": "Colorful Striped Flipflops", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-10310", "name": "Orthopedic Brown Leather Slippers", "storeQty": 10, "stockroomQty": 10 },
+
+    { "sku": "SKU-1031", "name": "Stylish Pink Canvas Casual Shoes", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-1032", "name": "Classic Grey Leather Formal Shoes", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-1033", "name": "Comfortable Blue Rubber Chappals", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-1034", "name": "Modern Black Synthetic Flipflops", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-1035", "name": "Cozy Red Velvet Slippers", "storeQty": 10, "stockroomQty": 10 },
+
+    { "sku": "SKU-1036", "name": "Running Grey Mesh Casual Shoes", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-1037", "name": "Elegant Black Suede Formal Shoes", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-1038", "name": "Daily Wear Tan Leather Chappals", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-1039", "name": "Beach Ready Yellow Rubber Flipflops", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-10410", "name": "Indoor Comfort Black Cotton Slippers", "storeQty": 10, "stockroomQty": 10 },
+
+    { "sku": "SKU-1041", "name": "Party Wear Silver Synthetic Casual Shoes", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-1042", "name": "Business Class Brown Leather Formal Shoes", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-1043", "name": "Ethnic Tan Beaded Chappals", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-1044", "name": "Sporty Blue Camo Flipflops", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-1045", "name": "Warm Woolen Grey Slippers", "storeQty": 10, "stockroomQty": 10 },
+
+    { "sku": "SKU-1046", "name": "Trendy White Canvas Casual Shoes", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-1047", "name": "Corporate Chic Brown Formal Shoes", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-1048", "name": "Simple Brown Rubber Chappals", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-1049", "name": "Glittery Golden Synthetic Flipflops", "storeQty": 10, "stockroomQty": 10 },
+    { "sku": "SKU-10510", "name": "Plush Green Terrycloth Slippers", "storeQty": 10, "stockroomQty": 10 }
   ]
 }
