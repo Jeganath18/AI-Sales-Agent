@@ -541,5 +541,24 @@ bot.on('polling_error', (error) => console.error('❌ Polling error:', error));
 const PORT = process.env.PORT || 80;
 app.listen(PORT, () => {
   console.log(`🌐 HTTP server running on port ${PORT}`);
-  console.log('🚀 Nexa AI Orchestrator is fully operational!');
+
+  // Wait 2 seconds for server to be fully ready, then set webhook
+  setTimeout(async () => {
+    try {
+      console.log('🔧 Removing old webhook...');
+      await bot.deleteWebHook({ drop_pending_updates: true });
+
+      console.log('🔧 Setting new webhook...');
+      await bot.setWebHook(BOT_WEBHOOK_URL);
+
+      // Verify it worked
+      const info = await bot.getWebHookInfo();
+      console.log('✅ Webhook set successfully!');
+      console.log('📋 URL:', info.url);
+      console.log('📋 Pending updates:', info.pending_update_count);
+    } catch (error) {
+      console.error('❌ Error setting webhook:', error.message);
+    }
+  }, 2000); // 2 second delay
 });
+console.log('🚀 Nexa AI Orchestrator is fully running...');
