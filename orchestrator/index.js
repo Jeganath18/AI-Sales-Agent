@@ -144,15 +144,16 @@ app.get('/telegram-webhook', (req, res) => {
 });
 // Telegram webhook
 app.post('/telegram-webhook', (req, res) => {
-  try {
-    console.log("📩 Webhook update:", req.body);
-    bot.processUpdate(req.body);
-    res.sendStatus(200);
-  } catch (err) {
-    console.error("❌ Webhook processing error:", err);
-    res.sendStatus(500);
-  }
+  res.sendStatus(200);
+  setImmediate(() => {
+    try {
+      bot.processUpdate(req.body);
+    } catch (err) {
+      console.error('❌ Telegram processing error:', err);
+    }
+  });
 });
+
 
 // Webhook URL
 const BOT_WEBHOOK_URL = "https://jeganath.duckdns.org/telegram-webhook";
@@ -537,28 +538,26 @@ bot.on('message', async (msg) => {
 bot.on('error', (error) => console.error('❌ Bot error:', error));
 bot.on('polling_error', (error) => console.error('❌ Polling error:', error));
 
-// Start Express server
+
 const PORT = process.env.PORT || 80;
-app.listen(PORT, () => {
+
+// webhook setup
+async function setupWebhook() {
+  try {
+    console.log('🔧 Resetting Telegram webhook...');
+    await bot.deleteWebHook({ drop_pending_updates: true });
+    await bot.setWebHook(BOT_WEBHOOK_URL);
+
+    const info = await bot.getWebHookInfo();
+    console.log('✅ Webhook active:', info.url);
+  } catch (e) {
+    console.error('❌ Webhook setup failed:', e.message);
+  }
+}
+
+// Start Express server
+app.listen(PORT, '0.0.0.0', async () => {
   console.log(`🌐 HTTP server running on port ${PORT}`);
-
-  // Wait 2 seconds for server to be fully ready, then set webhook
-  setTimeout(async () => {
-    try {
-      console.log('🔧 Removing old webhook...');
-      await bot.deleteWebHook({ drop_pending_updates: true });
-
-      console.log('🔧 Setting new webhook...');
-      await bot.setWebHook(BOT_WEBHOOK_URL);
-
-      // Verify it worked
-      const info = await bot.getWebHookInfo();
-      console.log('✅ Webhook set successfully!');
-      console.log('📋 URL:', info.url);
-      console.log('📋 Pending updates:', info.pending_update_count);
-    } catch (error) {
-      console.error('❌ Error setting webhook:', error.message);
-    }
-  }, 2000); // 2 second delay
+  await setupWebhook();
 });
 console.log('🚀 Nexa AI Orchestrator is fully running...');
