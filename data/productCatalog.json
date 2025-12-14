@@ -449,6 +449,141 @@
       "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXC37Jw_QZ6Chk7h5q6Hg_lzg2M4294M6n4g&s",
       "deliveryDays": 3,
       "gender": "Male"
-    }
+    },
+    {
+  "sku": "SKU-051",
+  "name": "Everyday Comfort Navy Canvas Casual Shoes",
+  "type": "casual",
+  "price": 1399,
+  "imageUrl": "https://images.jdmagicbox.com/quickquotes/images_main/navy-blue-canvas-shoes-2223456789.jpg",
+  "deliveryDays": 3,
+  "gender": "Male"
+},
+{
+  "sku": "SKU-052",
+  "name": "Premium Black Oxford Leather Formal Shoes",
+  "type": "formal",
+  "price": 3199,
+  "imageUrl": "https://teakwoodleathers.com/cdn/shop/files/black-oxford-formal.jpg",
+  "deliveryDays": 4,
+  "gender": "Male"
+},
+{
+  "sku": "SKU-053",
+  "name": "Soft Sole Maroon Leather Chappals",
+  "type": "chappal",
+  "price": 799,
+  "imageUrl": "https://www.walkaroo.in/cdn/shop/files/maroon-leather-chappals.jpg",
+  "deliveryDays": 3,
+  "gender": "Female"
+},
+{
+  "sku": "SKU-054",
+  "name": "Minimal White EVA Flipflops",
+  "type": "flipflop",
+  "price": 299,
+  "imageUrl": "https://5.imimg.com/data5/white-eva-flipflops.jpg",
+  "deliveryDays": 2,
+  "gender": "Male"
+},
+{
+  "sku": "SKU-055",
+  "name": "Soft Cushion Lavender Home Slippers",
+  "type": "slipper",
+  "price": 899,
+  "imageUrl": "https://i5.walmartimages.com/asr/lavender-home-slippers.jpg",
+  "deliveryDays": 3,
+  "gender": "Female"
+},
+{
+  "sku": "SKU-056",
+  "name": "Urban Grey Knit Casual Walking Shoes",
+  "type": "casual",
+  "price": 1799,
+  "imageUrl": "https://images-cdn.ubuy.co.in/grey-knit-walking-shoes.jpg",
+  "deliveryDays": 2,
+  "gender": "Male"
+},
+{
+  "sku": "SKU-057",
+  "name": "Office Wear Dark Brown Monk Strap Shoes",
+  "type": "formal",
+  "price": 2899,
+  "imageUrl": "https://assets.myntassets.com/brown-monk-strap-formal.jpg",
+  "deliveryDays": 4,
+  "gender": "Male"
+},
+{
+  "sku": "SKU-058",
+  "name": "Traditional Kolhapuri Style Tan Chappals",
+  "type": "chappal",
+  "price": 1199,
+  "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=kolhapuri-tan",
+  "deliveryDays": 6,
+  "gender": "Female"
+},
+{
+  "sku": "SKU-059",
+  "name": "Printed Floral Pink Flipflops",
+  "type": "flipflop",
+  "price": 499,
+  "imageUrl": "https://accessorizelondon.in/cdn/shop/products/floral-pink-flipflops.jpg",
+  "deliveryDays": 2,
+  "gender": "Female"
+},
+{
+  "sku": "SKU-060",
+  "name": "Memory Foam Black Indoor Slippers",
+  "type": "slipper",
+  "price": 1099,
+  "imageUrl": "https://i5.walmartimages.com/seo/memory-foam-black-slippers.jpg",
+  "deliveryDays": 4,
+  "gender": "Male"
+},
+{
+  "sku": "SKU-061",
+  "name": "Street Style Olive Green Casual Sneakers",
+  "type": "casual",
+  "price": 1599,
+  "imageUrl": "https://images.jdmagicbox.com/olive-green-sneakers.jpg",
+  "deliveryDays": 3,
+  "gender": "Female"
+},
+{
+  "sku": "SKU-062",
+  "name": "Luxury Tan Brogue Leather Formal Shoes",
+  "type": "formal",
+  "price": 3499,
+  "imageUrl": "https://jonasparamount.com/cdn/shop/files/tan-brogue.jpg",
+  "deliveryDays": 5,
+  "gender": "Male"
+},
+{
+  "sku": "SKU-063",
+  "name": "Everyday Use Black PU Chappals",
+  "type": "chappal",
+  "price": 549,
+  "imageUrl": "https://cdn.fynd.com/black-pu-chappals.jpg",
+  "deliveryDays": 3,
+  "gender": "Male"
+},
+{
+  "sku": "SKU-064",
+  "name": "Glossy Rose Gold Party Flipflops",
+  "type": "flipflop",
+  "price": 699,
+  "imageUrl": "https://assets.myntassets.com/rose-gold-flipflops.jpg",
+  "deliveryDays": 4,
+  "gender": "Female"
+},
+{
+  "sku": "SKU-065",
+  "name": "Ultra Soft Beige Winter Slippers",
+  "type": "slipper",
+  "price": 1199,
+  "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=beige-winter-slippers",
+  "deliveryDays": 3,
+  "gender": "Female"
+}
   ]
 }
