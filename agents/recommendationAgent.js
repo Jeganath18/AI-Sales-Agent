@@ -7,7 +7,7 @@ const path = require('path');
 // ==============================
 // Local embeddings (RAG)
 // ==============================
-const { pipeline } = require('@xenova/transformers');
+let pipelineFn = null;
 
 let cachedEmbeddings = null;
 let embedder = null;
@@ -17,7 +17,11 @@ let embedder = null;
 // ------------------------------
 async function getEmbedder() {
   if (!embedder) {
-    embedder = await pipeline(
+    if (!pipelineFn) {
+      const transformers = await import('@xenova/transformers');
+      pipelineFn = transformers.pipeline;
+    }
+    embedder = await pipelineFn(
       'feature-extraction',
       'Xenova/all-MiniLM-L6-v2'
     );
