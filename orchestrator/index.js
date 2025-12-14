@@ -135,11 +135,30 @@ grpcServer.bindAsync(`0.0.0.0:${GRPC_PORT}`, grpc.ServerCredentials.createInsecu
 const app = express();
 app.use(express.json());
 
-const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN || "8348296956:AAH4BXG8peZ7aoooShsgj21V4IR9hnCprno", { 
-  polling: true 
+// Health check
+app.get('/', (_, res) => res.send('🚀 Nexa AI Orchestrator running.'));
+
+// Webhook endpoint to receive updates from Telegram
+app.get('/telegram-webhook', (req, res) => {
+  res.status(200).send('Webhook is live');
+});
+// Telegram webhook
+app.post('/telegram-webhook', (req, res) => {
+  try {
+    console.log("📩 Webhook update:", req.body);
+    bot.processUpdate(req.body);
+    res.sendStatus(200);
+  } catch (err) {
+    console.error("❌ Webhook processing error:", err);
+    res.sendStatus(500);
+  }
 });
 
-app.get('/', (_, res) => res.send('🚀 Nexa AI Orchestrator running.'));
+// Webhook URL
+const BOT_WEBHOOK_URL = "https://jeganath.duckdns.org/telegram-webhook";
+
+// Initialize bot in webhook mode
+const bot = new TelegramBot(process.env.TELEGRAM_APIKEY, { polling: false });
 
 const sessions = {};
 

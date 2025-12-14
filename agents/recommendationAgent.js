@@ -4,15 +4,17 @@ const protoLoader = require('@grpc/proto-loader');
 const fs = require('fs');
 const path = require('path');
 
-// local embeddings
+// ==============================
+// Local embeddings (RAG)
+// ==============================
 const { pipeline } = require('@xenova/transformers');
 
 let cachedEmbeddings = null;
 let embedder = null;
 
-// ==============================
-// Embedding utilities (RAG)
-// ==============================
+// ------------------------------
+// Load embedding model ONCE
+// ------------------------------
 async function getEmbedder() {
   if (!embedder) {
     embedder = await pipeline(
@@ -25,12 +27,10 @@ async function getEmbedder() {
 
 async function embedText(texts) {
   const model = await getEmbedder();
-
   const output = await model(texts, {
     pooling: 'mean',
     normalize: true
   });
-
   return output.tolist();
 }
 
@@ -46,20 +46,76 @@ const pkgDef = protoLoader.loadSync(PROTO_PATH, {
   longs: String,
   enums: String,
   defaults: true,
-  oneofs: true,
+  oneofs: true
 });
 
 const proto = grpc.loadPackageDefinition(pkgDef).agents;
 
 // ==============================
-// Build product embeddings (RAG)
+// Product & Gender Knowledge
 // ==============================
-async function buildProductEmbeddings(catalog) {
+const PRODUCT_TYPE_SYNONYMS = {
+  slipper: ['slipper', 'slippers', 'house shoe', 'indoor'],
+  flipflop: ['flipflop', 'flip flop', 'flip-flop', 'rubber chappal', 'hawai', 'chappal', 'sandals'],
+  casual: ['casual', 'daily wear', 'walking', 'sneaker'],
+  formal: ['formal', 'office', 'business', 'dress'],
+  sports: ['sports', 'running', 'gym', 'workout', 'athletic']
+};
+
+const GENDER_SYNONYMS = {
+  male: ['male', 'boy', 'boys', 'man', 'men', 'gents'],
+  female: ['female', 'girl', 'girls', 'woman', 'women', 'ladies'],
+  unisex: ['unisex', 'any', 'all']
+};
+
+// ==============================
+// Intent Extraction (KEY PART)
+// ==============================
+function extractIntent(query) {
+  if (!query) return {};
+
+  const q = query.toLowerCase();
+
+  let inferredType = null;
+  let inferredGender = null;
+
+  for (const [type, synonyms] of Object.entries(PRODUCT_TYPE_SYNONYMS)) {
+    if (synonyms.some(s => q.includes(s))) {
+      inferredType = type;
+      break;
+    }
+  }
+
+  for (const [gender, synonyms] of Object.entries(GENDER_SYNONYMS)) {
+    if (synonyms.some(s => q.includes(s))) {
+      inferredGender = gender;
+      break;
+    }
+  }
+
+  return { inferredType, inferredGender };
+}
+
+function normalizeType(type) {
+  if (!type) return null;
+  return type.toLowerCase();
+}
+
+function normalizeGender(gender) {
+  if (!gender) return null;
+  return gender.toLowerCase();
+}
+
+// ==============================
+// Build catalog embeddings ONCE
+// ==============================
+async function buildProductEmbeddings() {
   if (cachedEmbeddings) return cachedEmbeddings;
 
+  const catalog = JSON.parse(fs.readFileSync(CATALOG_PATH, 'utf8'));
+
   const texts = catalog.products.map(
-    p =>
-      `${p.name} ${p.type} ${p.gender} ${p.description || ''} price ${p.price}`
+    p => `${p.name} ${p.type} ${p.gender} ${p.description || ''}`
   );
 
   const vectors = await embedText(texts);
@@ -76,9 +132,7 @@ async function buildProductEmbeddings(catalog) {
 // Cosine similarity
 // ==============================
 function cosineSimilarity(a, b) {
-  let dot = 0,
-    magA = 0,
-    magB = 0;
+  let dot = 0, magA = 0, magB = 0;
 
   for (let i = 0; i < a.length; i++) {
     dot += a[i] * b[i];
@@ -90,228 +144,78 @@ function cosineSimilarity(a, b) {
 }
 
 // ==============================
-// Enhanced Mapping & Normalization
-// ==============================
-const PRODUCT_TYPE_SYNONYMS = {
-  formal: ['formal', 'office', 'business', 'dress', 'oxford', 'loafer'],
-  casual: ['casual', 'everyday', 'sneaker', 'sneakers', 'trainer', 'trainers', 'walking'],
-  sports: ['sports', 'sport', 'running', 'athletic', 'gym', 'workout', 'jogger', 'joggers'],
-  flipflop: ['flipflop', 'flip-flop', 'flip flop', 'flipflops', 'flip-flops', 'flip flops', 'thong', 'thongs', 'sandal', 'sandals', 'chappal', 'chappals'],
-  slipper: ['slipper', 'slippers', 'house shoe', 'house shoes', 'indoor']
-};
-
-const GENDER_SYNONYMS = {
-  male: ['male', 'boy', 'man', 'men', 'guy', 'gents', 'gentleman'],
-  female: ['female', 'girl', 'woman', 'women', 'lady', 'ladies', 'gal'],
-  unisex: ['unisex', 'any', 'both', 'all']
-};
-
-/**
- * Normalize product type with fuzzy matching
- */
-function normalizeProductType(input) {
-  if (!input) return null;
-  
-  const lowerInput = input.toLowerCase().trim();
-  
-  // Direct match first
-  for (const [canonical, synonyms] of Object.entries(PRODUCT_TYPE_SYNONYMS)) {
-    if (synonyms.includes(lowerInput)) {
-      return canonical;
-    }
-  }
-  
-  // Partial match (for "flip-flops" in "I want flip-flops")
-  for (const [canonical, synonyms] of Object.entries(PRODUCT_TYPE_SYNONYMS)) {
-    for (const synonym of synonyms) {
-      if (lowerInput.includes(synonym) || synonym.includes(lowerInput)) {
-        return canonical;
-      }
-    }
-  }
-  
-  // Return as-is if no match (let it filter naturally)
-  return lowerInput;
-}
-
-/**
- * Normalize gender with fuzzy matching
- */
-function normalizeGender(input) {
-  if (!input) return null;
-  
-  const lowerInput = input.toLowerCase().trim();
-  
-  // Check synonyms
-  for (const [canonical, synonyms] of Object.entries(GENDER_SYNONYMS)) {
-    if (synonyms.includes(lowerInput)) {
-      return canonical;
-    }
-  }
-  
-  // Return as-is if no match
-  return lowerInput;
-}
-
-/**
- * Check if product matches type (handles variations)
- */
-function matchesType(product, searchType) {
-  if (!searchType) return true;
-  
-  const normalizedSearchType = normalizeProductType(searchType);
-  const normalizedProductType = normalizeProductType(product.type);
-  
-  return normalizedSearchType === normalizedProductType;
-}
-
-/**
- * Check if product matches gender (inclusive of unisex)
- */
-function matchesGender(product, searchGender) {
-  if (!searchGender) return true;
-  
-  const normalizedSearchGender = normalizeGender(searchGender);
-  const normalizedProductGender = normalizeGender(product.gender);
-  
-  // Unisex products match any gender
-  if (normalizedProductGender === 'unisex') return true;
-  
-  // Exact match
-  if (normalizedSearchGender === normalizedProductGender) return true;
-  
-  // If searching for unisex, only return unisex products
-  if (normalizedSearchGender === 'unisex') {
-    return normalizedProductGender === 'unisex';
-  }
-  
-  return false;
-}
-
-// ==============================
-// 1️⃣ gRPC Search implementation
+// 1️⃣ gRPC Search (FINAL RAG FLOW)
 // ==============================
 async function Search(call, callback) {
-  const { q = '', type, gender, qty = 1, offset = 0, limit = 3 } = call.request;
-  console.log(call.request);
-
-  console.log(`🔍 RecommendationAgent Search request ->`, {
-    query:q,
-    type,
-    gender,
-    qty,
-    offset,
-    limit
-  });
+  const { q = '', qty = 1, offset = 0, limit = 3 } = call.request;
 
   try {
-    // Load data
     const catalog = JSON.parse(fs.readFileSync(CATALOG_PATH, 'utf8'));
-    const inv = JSON.parse(fs.readFileSync(INVENTORY_PATH, 'utf8'));
+    const inventory = JSON.parse(fs.readFileSync(INVENTORY_PATH, 'utf8'));
 
-    console.log(`📦 Total products in catalog: ${catalog.products.length}`);
+    // 🧠 Step 1: Intent extraction
+    const { inferredType, inferredGender } = extractIntent(q);
 
-    let results = [...catalog.products]; // Clone array
+    console.log('🧠 Intent:', { inferredType, inferredGender });
 
-    // Step 1: Filter by type first (most specific)
+    // 🤖 Step 2: Semantic retrieval (RAG)
+    let rankedProducts = catalog.products;
+
     if (q) {
-      const beforeCount = results.length;
-      results = results.filter(p => matchesType(p, q));
-      console.log(`🏷️ Type filter (${type}): ${beforeCount} -> ${results.length} products`);
-    }
+      const embeddings = await buildProductEmbeddings();
+      const [qVector] = await embedText([q]);
 
-    // Step 2: Filter by gender
-    if (type) {
-      const beforeCount = results.length;
-      results = results.filter(p => matchesGender(p, type));
-      console.log(`👤 Gender filter (${type}): ${beforeCount} -> ${results.length} products`);
-    }
-
-    // Step 3: Semantic search if query provided (RAG)
-    if (q && q.trim().length > 0) {
-      try {
-        const scopedCatalog = { products: results };
-        const embeddings = await buildProductEmbeddings(scopedCatalog);
-        const [qVector] = await embedText([q]);
-
-        const scoredResults = embeddings
-          .map(e => ({
-            score: cosineSimilarity(qVector, e.vector),
-            product: e.product
-          }))
-          .sort((a, b) => b.score - a.score);
-
-        console.log(`🤖 RAG search scores (top 5):`, 
-          scoredResults.slice(0, 5).map(r => ({ 
-            name: r.product.name, 
-            score: r.score.toFixed(3) 
-          }))
-        );
-
-        results = scoredResults.map(x => x.product);
-      } catch (embeddingError) {
-        console.warn('⚠️ Embedding search failed, using filtered results:', embeddingError.message);
-        // Continue with filtered results
-      }
-    }
-
-    // Step 4: Check availability
-    results = results.map(p => {
-      const item = inv.items.find(i => i.sku === p.sku);
-      const totalQty = (item?.storeQty || 0) + (item?.stockroomQty || 0);
-      return { 
-        ...p, 
-        available: totalQty >= qty,
-        stock: totalQty 
-      };
-    });
-
-    // Step 5: Sort by availability (available items first)
-    results.sort((a, b) => {
-      if (a.available && !b.available) return -1;
-      if (!a.available && b.available) return 1;
-      return 0;
-    });
-
-    console.log(`✅ Final results: ${results.length} products found`);
-    
-    if (results.length > 0) {
-      console.log(`📋 First 3 results:`, 
-        results.slice(0, 3).map(p => ({ 
-          name: p.name, 
-          type: p.type, 
-          gender: p.gender,
-          available: p.available 
+      rankedProducts = embeddings
+        .map(e => ({
+          score: cosineSimilarity(qVector, e.vector),
+          product: e.product
         }))
+        .sort((a, b) => b.score - a.score)
+        .map(r => r.product);
+    }
+
+    // 🎯 Step 3: Hard filters
+    if (inferredType) {
+      rankedProducts = rankedProducts.filter(
+        p => normalizeType(p.type) === inferredType
       );
     }
 
-    // Step 6: Pagination
-    const pagedResults = results.slice(offset, offset + limit);
-    const moreAvailable = offset + limit < results.length;
+    if (inferredGender) {
+      rankedProducts = rankedProducts.filter(
+        p =>
+          normalizeGender(p.gender) === inferredGender ||
+          normalizeGender(p.gender) === 'unisex'
+      );
+    }
+
+    // 📦 Step 4: Availability
+    rankedProducts = rankedProducts.map(p => {
+      const item = inventory.items.find(i => i.sku === p.sku);
+      const totalQty = (item?.storeQty || 0) + (item?.stockroomQty || 0);
+      return { ...p, available: totalQty >= qty };
+    });
+
+    // 📄 Step 5: Pagination
+    const paged = rankedProducts.slice(offset, offset + limit);
 
     callback(null, {
       ok: true,
-      products: pagedResults,
-      moreAvailable,
-      message: pagedResults.length
-        ? `Showing ${pagedResults.length} of ${results.length} matching items.`
-        : 'No products found matching your criteria.',
+      products: paged,
+      moreAvailable: offset + limit < rankedProducts.length,
+      message: paged.length
+        ? `Showing ${paged.length} of ${rankedProducts.length} items`
+        : 'No products found'
     });
 
-  } catch (error) {
-    console.error('❌ Search error:', error);
-    callback(null, {
-      ok: false,
-      products: [],
-      moreAvailable: false,
-      message: `Search failed: ${error.message}`,
-    });
+  } catch (err) {
+    console.error('❌ Recommendation error:', err);
+    callback(err);
   }
 }
 
 // ==============================
-// 2️⃣ Export a startup function
+// 2️⃣ Start gRPC server
 // ==============================
 function startRecommendationAgent(port = 50051) {
   const server = new grpc.Server();
