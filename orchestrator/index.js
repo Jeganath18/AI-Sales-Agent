@@ -76,12 +76,13 @@ grpcServer.bindAsync(`0.0.0.0:${GRPC_PORT}`, grpc.ServerCredentials.createInsecu
 const app = express();
 app.use(express.json());
 
-// Hardcoded Render URL
-const BOT_WEBHOOK_URL = "https://jeganath.duckdns.org/telegram-webhook";
+// // Hardcoded Render URL
+// const BOT_WEBHOOK_URL = "https://localhost:80";
 
-// Initialize bot in webhook mode
-const bot = new TelegramBot("8348296956:AAH4BXG8peZ7aoooShsgj21V4IR9hnCprno", { polling: false });
+// // Initialize bot in webhook mode
+// const bot = new TelegramBot("8348296956:AAH4BXG8peZ7aoooShsgj21V4IR9hnCprno", { polling: false });
 
+const bot = new TelegramBot("8348296956:AAH4BXG8peZ7aoooShsgj21V4IR9hnCprno", { polling: true });
 
 // Webhook endpoint to receive updates from Telegram
 app.get('/telegram-webhook', (req, res) => {
@@ -436,17 +437,17 @@ app.listen(PORT, () => {
   // Wait 2 seconds for server to be fully ready, then set webhook
   setTimeout(async () => {
     try {
-      console.log('🔧 Removing old webhook...');
-      await bot.deleteWebHook({ drop_pending_updates: true });
+      // console.log('🔧 Removing old webhook...');
+      // await bot.deleteWebHook({ drop_pending_updates: true });
 
-      console.log('🔧 Setting new webhook...');
-      await bot.setWebHook(BOT_WEBHOOK_URL);
+      // console.log('🔧 Setting new webhook...');
+      // await bot.setWebHook(BOT_WEBHOOK_URL);
 
       // Verify it worked
-      const info = await bot.getWebHookInfo();
-      console.log('✅ Webhook set successfully!');
-      console.log('📋 URL:', info.url);
-      console.log('📋 Pending updates:', info.pending_update_count);
+      // const info = await bot.getWebHookInfo();
+    // console.log('✅ Webhook set successfully!');
+    //   console.log('📋 URL:', info.url);
+    //   console.log('📋 Pending updates:', info.pending_update_count);  
     } catch (error) {
       console.error('❌ Error setting webhook:', error.message);
     }
