@@ -10,7 +10,8 @@ RUN npm install --production
 # Copy all project files
 COPY . .
 
-EXPOSE 3000
+# Traefik will route this port 
+EXPOSE 80
 
 # Start the orchestrator
 CMD ["node", "orchestrator/index.js"]
