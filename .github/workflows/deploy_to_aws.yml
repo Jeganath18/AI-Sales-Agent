@@ -9,7 +9,7 @@ env:
   IMAGE: ${{ github.repository }}
   DEPLOY_URL: https://run.atlas.net.in/deploy
   DEPLOY_TOKEN: abcd1234
-  SERVICE_NAME: nexa_ai
+  SERVICE_NAME: nexa-ai
   SERVICE_PORT: 80
 
 jobs:
@@ -48,7 +48,7 @@ jobs:
           docker push ghcr.io/${IMAGE_LC}:${TAG}
           docker push ghcr.io/${IMAGE_LC}:latest
 
-      - name: Trigger PaaS Deployment
+      - name: Trigger Atlas Deployment
         run: |
           echo "Deploying ${IMAGE_LC}:${TAG}"
           curl -X POST "${DEPLOY_URL}" \
@@ -56,4 +56,3 @@ jobs:
             -d "token=${DEPLOY_TOKEN}" \
             -d "image=ghcr.io/${IMAGE_LC}:${TAG}" \
             -d "name=${SERVICE_NAME}" \
-            -d "port=${SERVICE_PORT}"
