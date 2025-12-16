@@ -7,9 +7,9 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE: ${{ github.repository }}
-  DEPLOY_URL: https://deployer.jeganath.duckdns.org/deploy
+  DEPLOY_URL: https://run.atlas.net.in/deploy
   DEPLOY_TOKEN: abcd1234
-  SERVICE_NAME: ai
+  SERVICE_NAME: nexa_ai
   SERVICE_PORT: 80
 
 jobs:
